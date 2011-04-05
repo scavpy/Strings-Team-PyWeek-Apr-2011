@@ -2,9 +2,8 @@ import pyglet
 
 from pyglet.window import key
 
-from tdgl import part
+from tdgl import part, picking, lighting
 from tdgl.gl import *
-from tdgl import lighting
 from tdgl.viewpoint import OrthoView, SceneView
 
 from rooms import Room
@@ -35,6 +34,7 @@ class Player:
 class State(part.Group):
     def __init__(self,name="",**kw):
         super(State,self).__init__(name,*kw)
+        self.quit = False
         self.build_parts(**kw)
         
     def resize(self,w,h):
@@ -45,6 +45,19 @@ class State(part.Group):
 
     def key_press(self,sym):
         pass
+    
+    def pick(self,label):
+        pass
+    
+    def pick_at(self,x,y):
+        """Pick topmost object at x,y"""
+        picking.start(x,y,1,1)
+        self.draw('PICK')
+        objects = picking.end()
+        if objects:
+            minz,maxz,label = objects[0]
+            self.pick(label)
+
 
 class GameState(State):
     def __init__(self,name="",room="hotelroom1",start="begin",**kw):
@@ -97,3 +110,17 @@ class GameState(State):
         elif sym == key.HOME:
             self.player.lookup = not self.player.lookup
         self.player.move_cam(self.camera)
+        
+
+    def pick(self,label):
+        prop,name,piece = label.target
+        if name != "":
+            obj = self[name]
+            print obj.text 
+            if getattr(obj,"door"):
+                text,room,gate = obj.door.split(",")
+                print text
+                self.quit = (room,gate)           
+        
+    def click(self,x,y):
+        self.pick_at(x,y)

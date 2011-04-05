@@ -49,3 +49,12 @@ model = sidetable
 pos = -0.7,3,0,-90
 text = A handy cupboard for storing your possessions. You don't do that of course. You wouldn't keep precious items inside a flimsy unlocked cupboard. Only a moron would do that.
 /
+
+[object]
+name = Door
+model = door
+pos = 2,6,0,-90
+text = The door to the hallway. It's only locked on the outside and you have your key anyway.
+door = Exit to Hallway,hotelhall,yourroom
+/
+

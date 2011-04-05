@@ -78,7 +78,11 @@ class Room(part.Group):
         pos = tuple(float(x) for x in data.get("pos").split(","))
         o = data.get("model")
         
-        p = PropPart(data.get("name"),_pos=pos[:3],_angle=pos[3],_obj_filename=o+".obj",text=data.get("text"))
+        p = PropPart(data.get("name"),_pos=pos[:3],_angle=pos[3],_obj_filename=o+".obj")
+        p.text = data.get("text")
+        d = data.get("door")
+        if d:
+            p.door = d
         p.prepare()
         self.append(p)
         

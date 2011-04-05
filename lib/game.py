@@ -19,6 +19,8 @@ class GameWin(pyglet.window.Window):
 
     def on_tick(self,secs):
         ms = secs*1000
+        if self.state.quit:
+            self.change_room(*self.state.quit)
         self.state.step(ms)
 
     def on_draw(self):
@@ -43,3 +45,10 @@ class GameWin(pyglet.window.Window):
             self.previous = (self.state.room,self.state.start)
         elif sym in [key.UP,key.LEFT,key.RIGHT,key.DOWN,key.HOME,key.END]:
             self.state.key_press(sym)
+
+    def on_mouse_press(self,x,y,button,mods):
+        if button == 1:
+            self.state.click(x,y)
+
+    def change_room(self,room,gate):
+        self.newstate = GameState(room=room,start=gate)
