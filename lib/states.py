@@ -22,12 +22,19 @@ class GameState(State):
     def __init__(self,name="",**kw):
         super(GameState,self).__init__(name,**kw)
 
+    def __del__(self):
+        lighting.release_light(self.light)
+
+    def setup_style(self):
+        lighting.setup()
+
     def build_parts(self,**kw):
-        sv = SceneView("scene",[])
+        sv = SceneView("scene",[],
+                       _vport=(0.0, 128, 1.0, 1.0), 
+                       _ClearColor=(0.3, 0.3, 0.3, 1.0))
         sv.append(Room("Hroom","hotelroom1.txt"))
         sv.camera.look_at((0,0,0),1)
         sv.camera.look_from_spherical(10,-90,30)
-        sv.camera.look_from_spherical(10,-50,30,1000)
         sv.camera.step(1)
         self.light = lighting.claim_light()
         with sv.compile_style():
@@ -36,4 +43,9 @@ class GameState(State):
         lighting.light_colour(self.light,(1,1,1,1))
         lighting.light_switch(self.light,True)
         self.append(sv)
+        ov = OrthoView("itembar", [],
+                       _vport=(0.0,0.0,1.0,128),
+                       _ClearColor=(0.1, 0, 0, 1.0),
+                       _left=0, _right=1024, _top=128, _bottom=0)
+        self.append(ov)
         
