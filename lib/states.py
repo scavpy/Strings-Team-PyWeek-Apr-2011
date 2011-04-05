@@ -26,8 +26,8 @@ class GameState(State):
         sv = SceneView("scene",[])
         sv.append(Room("Hroom","hotelroom1.txt"))
         sv.camera.look_at((0,0,0),1)
-        sv.camera.look_from_spherical(10,-90,30)
-        sv.camera.look_from_spherical(10,-50,30,1000)
+        sv.camera.look_from_spherical(90,10,30)
+        sv.camera.look_from_spherical(90,10,10,1000)
         sv.camera.step(1)
         self.light = lighting.claim_light()
         with sv.compile_style():

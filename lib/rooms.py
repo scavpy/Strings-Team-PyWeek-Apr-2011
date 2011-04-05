@@ -55,7 +55,7 @@ class Room(part.Group):
     def buildparts(self,**kw):
         for d in self.data:
             p = d[1]
-            p = (p[0],self.height-p[1],0)
+            p = (p[0]*2,(self.height-p[1])*2,0)
             o = RoomPart(_pos=p,_angle=d[2],_obj_filename=d[0]+".obj")
             o.prepare()
             self.append(o)
