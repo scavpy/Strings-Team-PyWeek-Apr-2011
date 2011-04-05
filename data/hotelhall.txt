@@ -9,21 +9,29 @@ f = room-floor
 /
 
 [gates]
-begin = 4,2,90
+yourroom = 0,2,0
+cultroom = 0,10,0
+lobby = 6,10,180
 /
 
 [layer]
+f0 f0
+f0 f0
+f0 f0
+f0 f0
 f0 f0 f0 f0
 f0 f0 f0 f0
 f0 f0 f0 f0
-f0 f0 f0 --
 /
 
 [layer]
-c3 w3 W3 c2
-w0 -- -- w2
-w0 -- -- c1
-c0 D1 c1 --
+c3 c2
+D0 w2
+w0 w2
+D0 w2
+w0 w2 w3 w3
+D0 -- -- D2
+w0 w2 w1 w1
 /
 
 [lights]

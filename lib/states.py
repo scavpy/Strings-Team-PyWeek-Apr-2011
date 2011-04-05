@@ -19,7 +19,10 @@ class State(part.Group):
                 p.resize(w,h)
 
 class GameState(State):
-    def __init__(self,name="",**kw):
+    def __init__(self,name="",room="hotelroom1",start="begin",**kw):
+        self.light = lighting.claim_light()
+        self.room = room
+        self.start = start
         super(GameState,self).__init__(name,**kw)
 
     def __del__(self):
@@ -31,14 +34,15 @@ class GameState(State):
     def build_parts(self,**kw):
         sv = SceneView("scene",[],
                        _vport=(0.0, 128, 1.0, 1.0), 
-                       _ClearColor=(0.3, 0.3, 0.3, 1.0))
-        hroom = Room("Hroom","hotelroom1.txt")
+                       _ClearColor=(0.3, 0.3, 0.3, 1.0),
+                       _perspective_angle=30.0)
+        hroom = Room("Room",self.room+".txt")
+        ppos = hroom.gates.get(self.start,(0,0,0))
+        print ppos
         sv.append(hroom)
-        sv.camera.look_at((hroom.width / 2, hroom.height / 2, 1),1)
-        sv.camera.look_from_spherical(10,90,10)
-        sv.camera.look_from_spherical(10,-90,10, 10000)
+        sv.camera.look_at((ppos[0],ppos[1],1.5),1)
+        sv.camera.look_from_spherical(10,ppos[2],1,1)
         sv.camera.step(1)
-        self.light = lighting.claim_light()
         with sv.compile_style():
             glEnable(GL_LIGHTING)
         lighting.two_side(True)

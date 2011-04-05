@@ -16,6 +16,7 @@ class Room(part.Group):
         self.width = 0
         self.height = 0
         self.key = {}
+        self.gates = {}
         self.data = []
         self.loadfile(fname)
         self.buildparts(**kw)
@@ -26,25 +27,25 @@ class Room(part.Group):
         lines = roomdata.readlines()
         for L in lines:
             if L.strip():
-                if L.startswith("[/"):
+                if L.startswith("/"):
                     mode = "reading"
                 elif mode == "reading":
                     if L.startswith("name"):
                         self.name = L.split("=")[1].strip()
-                    elif L.startswith("[key]"):
-                        mode = "matching"
-                    elif L.startswith("[layer]"):
-                        mode = "drawing"
+                    elif L.startswith("["):
+                        mode = L.strip("[]\n")
                         self.width = 0
                         self.height = 0
-                    elif L.startswith("[objects]"):
-                        mode = "placing"
-                elif mode == "matching":
+                elif mode == "key":
                     k,v = L.split("=")
                     self.key[k.strip()] = v.strip()
-                elif mode == "drawing":
+                elif mode == "layer":
                     row = L.split()
-                    self.add_cells(row)            
+                    self.add_cells(row)
+                elif mode == "gates":
+                    k,v = L.split("=")
+                    gate = v.strip().split(",")
+                    self.gates[k.strip()] = tuple(int(x) for x in gate)
     def add_cells(self,row):
         """ Returns a tuple with the format (objfile,pos,angle) """
         self.width = max(self.width,len(row))
