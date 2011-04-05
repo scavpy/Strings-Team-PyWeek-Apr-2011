@@ -21,13 +21,14 @@ class Player:
     def move_cam(self,cam,instant=False):
         ms = 1 if instant else 800
         cam.look_at((self.pos[0],self.pos[1],self.height),ms)
-        cam.look_from_spherical(10-self.lookup*40,self.angle,1,ms)
-    def walk(self,mag):
+        cam.look_from_spherical(10-self.lookup*80,self.angle,1,ms)
+    def walk(self,mag,walkable_tiles):
         a = self.angle
         x,y = self.pos
-        x += cos( radians(a) )*mag
-        y += sin( radians(a) )*mag
-        self.pos = (x,y)
+        x += int(cos( radians(a) )*mag)
+        y += int(sin( radians(a) )*mag)
+        if (x,y) in walkable_tiles:
+            self.pos = (x,y)
     def turn(self,mag):
         self.angle += mag
 
@@ -84,10 +85,11 @@ class GameState(State):
         self.append(ov)
     
     def key_press(self,sym):
+        wt = self["Room"].walktiles
         if sym == key.UP:
-            self.player.walk(-2)
+            self.player.walk(-2,wt)
         elif sym == key.DOWN:
-            self.player.walk(2)
+            self.player.walk(2,wt)
         elif sym == key.RIGHT:
             self.player.turn(-90)
         elif sym == key.LEFT:

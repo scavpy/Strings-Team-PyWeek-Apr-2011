@@ -26,8 +26,19 @@ w0 -- -- c1
 c0 D1 c1 --
 /
 
+[walk]
+1 1 1 1
+0 1 1 1
+1 1 1 1
+1 1 1
+/
+
 [lights]
 /
 
-[objects]
+[object]
+name = Bed
+model = bed
+pos = 0.05,2,0,0
+text = The bed that you slept in. It wasn't all that comfortable but you didn't pay much anyway.
 /

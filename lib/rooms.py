@@ -18,6 +18,7 @@ class Room(part.Group):
         self.key = {}
         self.gates = {}
         self.data = []
+        self.walktiles = set()
         self.loadfile(fname)
         self.buildparts(**kw)
 
@@ -46,17 +47,26 @@ class Room(part.Group):
                     k,v = L.split("=")
                     gate = v.strip().split(",")
                     self.gates[k.strip()] = tuple(int(x) for x in gate)
-    def add_cells(self,row):
+                elif mode == "walk":
+                    row = L.split()
+                    self.add_cells(row,walk=True)
+    def add_cells(self,row,walk=False):
         """ Returns a tuple with the format (objfile,pos,angle) """
         self.width = max(self.width,len(row))
         self.height += 1
         x = 0
-        for c in row:
-            o = self.key.get(c[:-1])
-            if o:
-                d = (self.key[c[:-1]],(x,self.height),int(c[-1])*-90)
-                self.data.append(d)
-            x += 1
+        if walk:
+            for c in row:
+                if c == "1":
+                    self.walktiles.add((x*2,self.height*2))
+                x += 1
+        else:
+            for c in row:
+                o = self.key.get(c[:-1])
+                if o:
+                    d = (self.key[c[:-1]],(x,self.height),int(c[-1])*-90)
+                    self.data.append(d)
+                x += 1
     def buildparts(self,**kw):
         for d in self.data:
             p = d[1]
