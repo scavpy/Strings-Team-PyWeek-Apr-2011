@@ -19,6 +19,6 @@ f0 f0 f0 f0
 c3 w3 W3 c2
 w0 -- -- w2
 w0 -- -- w2
-c0 D1 w1 c1
+c0 w1 w1 c1
 [/layer]
 
