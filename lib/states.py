@@ -32,15 +32,19 @@ class GameState(State):
         sv = SceneView("scene",[],
                        _vport=(0.0, 128, 1.0, 1.0), 
                        _ClearColor=(0.3, 0.3, 0.3, 1.0))
-        sv.append(Room("Hroom","hotelroom1.txt"))
-        sv.camera.look_at((0,0,0),1)
-        sv.camera.look_from_spherical(10,-90,30)
+        hroom = Room("Hroom","hotelroom1.txt")
+        sv.append(hroom)
+        sv.camera.look_at((hroom.width / 2, hroom.height / 2, 1),1)
+        sv.camera.look_from_spherical(10,90,10)
+        sv.camera.look_from_spherical(10,-90,10, 10000)
         sv.camera.step(1)
         self.light = lighting.claim_light()
         with sv.compile_style():
             glEnable(GL_LIGHTING)
-        lighting.light_position(self.light,(10,10,10,0))
-        lighting.light_colour(self.light,(1,1,1,1))
+        lighting.two_side(True)
+        lighting.local_viewer(True)
+        lighting.light_position(self.light,(hroom.width/2, hroom.height/2, 2,1))
+        lighting.light_colour(self.light,(1,1,0.9,1))
         lighting.light_switch(self.light,True)
         self.append(sv)
         ov = OrthoView("itembar", [],
