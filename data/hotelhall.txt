@@ -9,7 +9,7 @@ f = room-floor
 /
 
 [gates]
-yourroom = 0,4,180
+yourroom = 0,2,180
 cultroom = 0,10,180
 lobby = 6,10,0
 /
