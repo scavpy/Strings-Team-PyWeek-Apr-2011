@@ -4,13 +4,21 @@ name = Hotel Santa Maria: Room 14 (Your room)
 c = hotelroom-corner
 w = hotelroom-wall
 W = hotelroom-window
+D = hotelroom-door
 f = room-floor
 [/key]
 
-[data]
-c0 w1 W1 c1
-w0 f0 f0 w2
-w0 f0 f0 w2
-c3 w3 w3 c2
-[/data]
+[layer]
+f0 f0 f0 f0
+f0 f0 f0 f0
+f0 f0 f0 f0
+f0 f0 f0 f0
+[/layer]
+
+[layer]
+c3 w3 W3 c2
+w0 -- -- w2
+w0 -- -- w2
+c0 D1 w1 c1
+[/layer]
 
