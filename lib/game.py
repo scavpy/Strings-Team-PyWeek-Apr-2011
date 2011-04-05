@@ -37,6 +37,9 @@ class GameWin(pyglet.window.Window):
         return True
 
     def on_key_press(self,sym,mod):
-        m,n = self.previous
-        self.newstate = GameState(room=m,start=n)
-        self.previous = (self.state.room,self.state.start)
+        if sym == key.SPACE:
+            m,n = self.previous
+            self.newstate = GameState(room=m,start=n)
+            self.previous = (self.state.room,self.state.start)
+        elif sym in [key.UP,key.LEFT,key.RIGHT,key.DOWN,key.HOME,key.END]:
+            self.state.key_press(sym)

@@ -1,4 +1,4 @@
-name = Hotel Santa Maria: Room 14 (Your room)
+name = Hotel Santa Maria: Room 3 (Your room)
 
 [key]
 c = hotelroom-corner
@@ -9,9 +9,9 @@ f = room-floor
 /
 
 [gates]
-yourroom = 0,2,0
-cultroom = 0,10,0
-lobby = 6,10,180
+yourroom = 0,4,180
+cultroom = 0,10,180
+lobby = 6,10,0
 /
 
 [layer]
@@ -29,9 +29,9 @@ c3 c2
 D0 w2
 w0 w2
 D0 w2
-w0 w2 w3 w3
+w0 -- w3 c2
 D0 -- -- D2
-w0 w2 w1 w1
+c0 w1 w1 c1
 /
 
 [lights]
