@@ -8,6 +8,7 @@ class PropPart(objpart.ObjPart):
     _default_style = {
         "obj-pieces":None,
         "obj-filename":None,
+        "mat-filename":None,
         }
 
 class Room(part.Group):
@@ -43,7 +44,8 @@ class Room(part.Group):
                         self.height = 0
                 elif mode == "key":
                     k,v = L.split("=")
-                    self.key[k.strip()] = v.strip()
+                    style = v.strip().split(":")                    
+                    self.key[k.strip()] = style
                 elif mode == "layer":
                     row = L.split()
                     self.add_cells(row)
@@ -77,8 +79,11 @@ class Room(part.Group):
     def add_prop(self,data):
         pos = tuple(float(x) for x in data.get("pos").split(","))
         o = data.get("model")
+        m = data.get("material")
         
         p = PropPart(data.get("name"),_pos=pos[:3],_angle=pos[3],_obj_filename=o+".obj")
+        if m:
+            p._style["mat-filename"] = m+".mtl"
         p.text = data.get("text")
         d = data.get("door")
         if d:
@@ -88,8 +93,15 @@ class Room(part.Group):
         
     def buildparts(self,**kw):
         for d in self.data:
+            style = d[0]
+            if len(style) == 1:
+                model = d[0][0]
+                mat = None
+            else:
+                model,mat = d[0]
+                mat+=".mtl"
             p = d[1]
             p = (p[0]*2,p[1]*2,0)
-            o = PropPart(_pos=p,_angle=d[2],_obj_filename=d[0]+".obj")
+            o = PropPart(_pos=p,_angle=d[2],_obj_filename=model+".obj",_mat_filename=mat)
             o.prepare()
             self.append(o)

@@ -53,6 +53,7 @@ text = This has got to be the most nefarious table you have ever seen.
 [object]
 name = OccultBook
 model = book
+material = greenbook
 pos = -0.4,4.3,0.73,30
 text = The contents of this book are horrifying. Dreadful rituals. One involving the artefact. Reading it would surely be supurfluos information however.
 /

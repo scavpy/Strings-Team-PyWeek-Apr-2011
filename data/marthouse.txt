@@ -1,11 +1,11 @@
 name = Martin's House
 
 [key]
-c = hotelroom-corner
-w = hotelroom-wall
-W = hotelroom-window
-D = hotelroom-door
-f = room-floor
+c = hotelroom-corner:blueroom-corner
+w = hotelroom-wall:blueroom-wall
+W = hotelroom-window:blueroom-window
+D = hotelroom-door:blueroom-door
+f = room-floor:blue-floor
 /
 
 [gates]

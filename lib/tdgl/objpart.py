@@ -22,7 +22,8 @@ obj_pool = WeakValueDictionary()
 class WFObj(object):
     """ a set of display lists constructed from a .obj file
     """
-    def __init__(self,fname,swapyz=True):
+    def __init__(self,fname,mname,swapyz=True):
+        self.mname = mname
         self.mesh_dls = {}
         self.mat_dls = material.MDLdict()
         self.mesh_trans = {}
@@ -60,7 +61,10 @@ class WFObj(object):
                 continue
             key = tokens[0]
             if key == 'mtllib':
-                self.mat_dls.load(tokens[1])
+                if self.mname:
+                    self.mat_dls.load(self.mname)
+                else:
+                    self.mat_dls.load(tokens[1])
             elif key == 'o':
                 if piece.endswith("_Origin") and len(vertices):
                     self.origins[piece[:-7]] = vertices[-1]
@@ -142,11 +146,11 @@ class WFObj(object):
         return self.mesh_trans[piece]
 
 
-def get_obj(fname):
-    if fname not in obj_pool:
-        obj = WFObj(fname,False)
-        obj_pool[fname] = obj
-    return obj_pool[fname]
+def get_obj(fname,mname=None):
+    if (fname,mname) not in obj_pool:
+        obj = WFObj(fname,mname,False)
+        obj_pool[(fname,mname)] = obj
+    return obj_pool[(fname,mname)]
 
 class ObjPart(part.Part):
     _has_transparent = True
@@ -159,8 +163,12 @@ class ObjPart(part.Part):
     def prepare(self):
         """ Prepare WFObj from style """
         fname = self.getstyle("obj-filename")
+        mname = self.getstyle("mat-filename")
         if fname:
-            self.obj = get_obj(fname)
+            if mname:
+                self.obj = get_obj(fname,mname=mname)
+            else:
+                self.obj = get_obj(fname)
         else:
             self.obj = None
             print "ObjPart ",self._name,"failed to load",fname 
