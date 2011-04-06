@@ -44,6 +44,21 @@ text = This is the cultists bed. You can't help but notice how evil it looks.
 /
 
 [object]
+name = Table
+model = table
+pos = -0.4,4.3,0,90
+text = This has got to be the most nefarious table you have ever seen.
+/
+
+[object]
+name = OccultBook
+model = book
+pos = -0.4,4.3,0.73,30
+text = The contents of this book are horrifying. Dreadful rituals. One involving the artefact. Reading it would surely be supurfluos information however.
+/
+
+
+[object]
 name = Bedside Table
 model = sidetable
 pos = 6.7,3,0,90
@@ -58,3 +73,9 @@ text = The door to the hallway. You should get out of here as soon as possible b
 door = Exit to Hallway,hotelhall,cultroom
 /
 
+[object]
+name = Curtains
+model = curtains
+pos = 4,0,0,90
+text = These are blackout curtains. Your room had normal, run-of-the-mill curtains. This makes you suspicious. Jealous and suspicious.
+/

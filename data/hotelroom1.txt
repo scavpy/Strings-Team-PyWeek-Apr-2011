@@ -59,3 +59,9 @@ text = The door to the hallway. It's only locked on the outside and you have you
 door = Exit to Hallway,hotelhall,yourroom
 /
 
+[object]
+name = Curtains
+model = curtains
+pos = 4,0,0,90
+text = You feel sure that outside the window is a spledorous view of the whole of Saint-Pierre. Animated, vast and beautiful. The curtains look nice shut though.
+/

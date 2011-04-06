@@ -8,10 +8,14 @@ C = street-corner
 /
 
 [gates]
-hotel = 4,2,-90
+hotel = 4,6,-90
+ah = 4,14,90
+marthouse = 10,14,90
 /
 
 [layer]
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 S2 S2 S2 S2 S2 S2 S2 S2 S2 C1 P0 P0
@@ -19,15 +23,21 @@ S2 S2 S2 S2 S2 S2 S2 S2 S2 C1 P0 P0
 S0 S0 S0 S0 S0 S0 S0 S0 S0 C0 P0 P0
 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 /
 
 [walk]
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0
 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1 1
 1 1 1 1 1 1 1 1 1 1
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0
 /
 
@@ -37,14 +47,14 @@ P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 [object]
 name=Hotel
 model=hotel
-pos = 4,0,0,0
+pos = 4,4,0,0
 text = The Santa-Maria hotel. You speculate as to whether or not it is made of cheese. Speculate is all you can ever do.
 /
 
 [object]
 name=HotelDoors
 model=hotel-doubledoors
-pos = 4,0,0,0
+pos = 4,4,0,0
 text = Doors to the Hotel
 door = To Hotel,hotellobby,street
 /
@@ -52,14 +62,14 @@ door = To Hotel,hotellobby,street
 [object]
 name=AH
 model=ah
-pos = 4,12,0,180
+pos = 4,16,0,180
 text = The Saint-Pierre Auction House. One of the oldest buildings in the area.
 /
 
 [object]
 name=AHDoors
 model=hotel-doubledoors
-pos = 4,11.85,0,180
+pos = 4,15.85,0,180
 text = Doors to the Auction House
 door = To Auction House,auctionhouse,door
 /
@@ -67,14 +77,14 @@ door = To Auction House,auctionhouse,door
 [object]
 name=MartHouse
 model=martinhouse
-pos = 12,12,0,180
+pos = 12,16,0,180
 text = Your old friend Martin's house.
 /
 
 [object]
 name=MartDoor
 model=door
-pos = 10,10.97,-0.45,-90
+pos = 10,14.97,-0.45,-90
 text = The door of Martin's house.
 door = To Martin's house,marthouse,door
 /
@@ -120,4 +130,72 @@ name=Wall7
 model=wall
 pos = 20,12,0,0
 text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall8
+model=wall
+pos = 20,14,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall9
+model=wall
+pos = 20,16,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall10
+model=wall
+pos = 20,18,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Tree1
+model=tropicaltree
+pos = 20,20,0,135
+text = What a pretty tree. It proves to anyone beyond a shadow of a doubt that this is indeed Martinique.
+/
+[object]
+name=Wall11
+model=wall
+pos = 18,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall12
+model=wall
+pos = 16,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall13
+model=wall
+pos = 14,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall14
+model=wall
+pos = 10,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall15
+model=wall
+pos = 8,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+
+[object]
+name=Wall16
+model=wall
+pos = 6,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+
+[object]
+name=Tree2
+model=tropicaltree
+pos = 8,18,0,180
+text = What a pretty tree. It proves to anyone beyond a shadow of a doubt that this is indeed Martinique.
 /

@@ -1,0 +1,72 @@
+name = Martin's House
+
+[key]
+c = hotelroom-corner
+w = hotelroom-wall
+W = hotelroom-window
+D = hotelroom-door
+f = room-floor
+/
+
+[gates]
+door = 14,10,90
+/
+
+[layer]
+f0 f0 f0 f0 f0 -- f0 f0 f0
+f0 f0 f0 f0 f0 -- f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 -- f0 f0 f0
+f0 f0 f0 f0 f0 -- f0 f0 f0
+/
+
+[layer]
+c3 w3 w3 -- c2 -- c3 w3 c2
+w0 -- -- -- w2 -- w0 -- w2
+w0 -- -- -- -- w3 -- -- w2
+w0 -- -- -- -- w1 -- -- w2
+w0 -- -- -- w2 -- w0 -- w2
+c0 W1 w1 w1 c1 -- c0 D1 c1
+/
+
+[walk]
+1 1 1 1 1 0 1 1 1
+1 1 1 1 1 0 1 1 1
+1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1
+1 1 1 1 1 0 1 1 1
+1 1 1 1 1 0 1 1 1
+/
+
+[object]
+name = Door
+model = door
+pos = 14,10,0,-90
+text = The door of Martin's house.
+door = Exit to Saint-Pierre,street,marthouse
+/
+[object]
+name = Curtains
+model = curtains
+pos = 2,10,0,-90
+text = More blackout curtains. You're beginning to feel left out.
+/
+[object]
+name = Table
+model = table
+pos = -0.4,8,-0.1,-90
+text = You find it strange that all the furniture in this town is exactly the same.
+/
+[object]
+name = Bloodstain
+model = blood-wall
+pos = 6,0,0,90
+text = Jesus Christ... That's a lot of blood. Martin's blood ... Is that some kind of symbol?
+/
+[object]
+name = Martin
+model = martincorpse
+pos = 6,0,0,90
+text = This is ... this was Martin. He's definately dead. There's just ... too much blood.
+/

@@ -1,0 +1,79 @@
+name = HMS Titanic: Hallway
+
+[key]
+f = hotelroom-floor
+w = titan-wall
+d = titan-doorframe
+D = hotelroom-door
+W = hotelroom-wall
+/
+
+[gates]
+deck = 2,0,90
+bar = 2,8,-90
+cultroom = 0,2,0
+/
+
+[layer]
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+/
+
+[layer]
+W3 D3 W3
+-- -- --
+-- -- --
+-- -- --
+W1 D1 W1
+/
+
+[layer]
+w0 -- w3
+d0 -- w3
+w0 -- w3
+d0 -- w3
+w0 -- w3
+/
+
+[walk]
+1 1 1
+1 1 1
+1 1 1
+1 1 1
+1 1 1
+/
+
+[object]
+name = CultDoor
+model = titan-door
+pos = 0,2,0,0
+text = The door to someone's room.
+door = Door to Room,titanhall,deck
+/
+
+[object]
+name = RoomDoor
+model = titan-door
+pos = 0,6,0,0
+text = The door to someone's room.
+door = Door to Room,titanhall,bar
+/
+
+[object]
+name = DeckDoor
+model = door
+pos = 2,0,0,90
+text = The door up to the deck.
+door = Door to Room,titanhall,bar
+/
+
+[object]
+name = BarDoor
+model = door
+pos = 2,8,0,-90
+text = The door into the bar.
+door = Door to Room,titanhall,deck
+/

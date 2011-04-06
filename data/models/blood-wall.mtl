@@ -1,0 +1,22 @@
+# Blender3D MTL File: blood-wall.blend
+# Material Count: 2
+newmtl None_1900room.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd 1900room.png
+
+
+newmtl None_bloodstain1.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd bloodstain1.png
+
+

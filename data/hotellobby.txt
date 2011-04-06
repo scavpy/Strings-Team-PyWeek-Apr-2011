@@ -8,6 +8,7 @@ D = hotelroom-door
 L = hotelroom-bigdoorleft
 R = hotelroom-bigdoorright
 f = room-floor
+A = auction-wall
 /
 
 [gates]
@@ -30,7 +31,7 @@ street = 12,4,0
 -- w0 -- -- -- -- L2
 -- w0 -- -- -- -- R2
 -- w0 -- -- -- -- w2
--- c0 w1 w1 w1 w1 c1
+-- c0 w1 w1 A1 w1 c1
 /
 
 [walk]
@@ -39,7 +40,7 @@ street = 12,4,0
 0 1 1 1 1 1 1
 0 1 1 1 1 1 1
 0 1 1 1 1 1 1
-0 1 1 1 1 1 1
+0 1 1 1 0 1 1
 
 [lights]
 /

@@ -1,0 +1,106 @@
+name = Saint-Pierre Auction House
+
+[key]
+c = hotelroom-corner
+w = hotelroom-wall
+W = hotelroom-window
+D = hotelroom-door
+L = hotelroom-bigdoorleft
+R = hotelroom-bigdoorright
+f = room-floor
+A = auction-wall
+/
+
+[gates]
+door = 6,8,90
+/
+
+[layer]
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+/
+
+[layer]
+c3 w3 w3 A3 w3 w3 c2
+w0 -- -- -- -- -- w2
+W0 -- -- -- -- -- W2
+w0 -- -- -- -- -- w2
+c0 w1 R1 L1 w1 w1 c1
+/
+
+[walk]
+1 1 1 0 1 1 1
+1 0 0 1 0 0 1
+1 0 0 1 0 0 1
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
+/
+
+[lights]
+/
+
+[object]
+name=LeftDoor
+model=bigdoorleft
+pos = 6,8,0,-90
+text = Door to outside
+door = Exit to Saint-Pierre,street,ah
+/
+[object]
+name=RightDoor
+model=bigdoorright
+pos = 4,8,0,-90
+text = Door to outside
+door = Exit to Saint-Pierre,street,ah
+/
+[object]
+name=Bench1
+model=benches
+pos = 2,2,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/
+[object]
+name=Bench2
+model=benches
+pos = 4,2,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/
+[object]
+name=Bench3
+model=benches
+pos = 4,4,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/
+[object]
+name=Bench4
+model=benches
+pos = 2,4,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/
+[object]
+name=Bench5
+model=benches
+pos = 8,2,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/
+[object]
+name=Bench6
+model=benches
+pos = 10,2,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/
+[object]
+name=Bench7
+model=benches
+pos = 10,4,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/
+[object]
+name=Bench8
+model=benches
+pos = 8,4,0,180
+text = The bidders would sit here if there was an auction going on. Turns out there isn't.
+/

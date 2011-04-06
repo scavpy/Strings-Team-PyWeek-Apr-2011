@@ -11,25 +11,29 @@ from rooms import Room
 
 from math import cos,radians,sin
 
+MOVESPEED = 600
+
 class Player:
     def __init__(self,pos,angle,height = 1.5):
         self.pos = pos
         self.angle = angle
+        self.lasta = angle
         self.height = height
         self.walking = 0
-        self.lookup = False
+        self.look = 0
     def move_cam(self,cam,instant=False):
-        ms = 1 if instant else 800
+        ms = 1 if instant else MOVESPEED
         cam.look_at((self.pos[0],self.pos[1],self.height),ms)
-        cam.look_from_spherical(-self.lookup*70,self.angle,1,ms)
+        cam.look_from_spherical(self.look*45,self.angle,1,ms)
     def walk(self,mag,walkable_tiles):
-        a = self.angle
+        a = self.angle if self.angle%90 == 0 else self.lasta
         x,y = self.pos
         x += int(cos( radians(a) )*mag)
         y += int(sin( radians(a) )*mag)
         if (x,y) in walkable_tiles:
             self.pos = (x,y)
     def turn(self,mag):
+        self.lasta = self.angle
         self.angle += mag
 
 class State(part.Group):
@@ -108,11 +112,13 @@ class GameState(State):
         elif sym == key.DOWN:
             self.player.walk(2,wt)
         elif sym == key.RIGHT:
-            self.player.turn(-90)
+            self.player.turn(-45)
         elif sym == key.LEFT:
-            self.player.turn(90)
+            self.player.turn(45)
         elif sym == key.HOME:
-            self.player.lookup = not self.player.lookup
+            self.player.look = max(self.player.look-1,-1)
+        elif sym == key.END:
+            self.player.look = min(self.player.look+1,1)
         self.player.move_cam(self.camera)
         
 
