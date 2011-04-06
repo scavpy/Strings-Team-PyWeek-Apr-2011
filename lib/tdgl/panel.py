@@ -260,6 +260,7 @@ class SelectPanel(Panel):
         for i,p in enumerate(self.contents):
             if mode=="PICK":
                 picking.label(self,selected=i)
+                print "menu item", i #DEBUG
             p.draw(mode)
             if mode=="PICK":
                 picking.nolabel()
