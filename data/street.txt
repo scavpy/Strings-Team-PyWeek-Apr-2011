@@ -5,6 +5,7 @@ P = path
 S = street
 C = street-corner
 # = road
+I = street-incorner
 /
 
 [gates]
@@ -14,28 +15,28 @@ marthouse = 10,14,90
 /
 
 [layer]
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-S2 S2 S2 S2 S2 S2 S2 S2 S2 C1 P0 P0
-#0 #0 #0 #0 #0 #0 #0 #0 #0 S1 P0 P0
-S0 S0 S0 S0 S0 S0 S0 S0 S0 C0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 C2 S2 S2 S2 S2 S2 S2 S2 S2 S2 C1 P0 P0 P0
+P0 S3 #0 #0 #0 #0 #0 #0 #0 #0 #0 S1 P0 P0 P0
+P0 C3 S0 S0 S0 S0 S0 S0 S0 I0 #0 S1 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 S3 #0 S1 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 S3 #0 S1 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 C3 S0 C0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 /
 
 [walk]
-0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0
-1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1
 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0
@@ -90,69 +91,82 @@ door = To Martin's house,marthouse,door
 /
 
 [object]
+name=House1
+model=house
+pos = 11,4,0,0
+text = This is someone's house. It is not your house. Do not go in their house.
+/
+[object]
+name=House2
+model=house
+pos = 17,4,0,0
+text = This is someone else's house. You were warned the first time.
+/
+
+[object]
 name=Wall1
 model=wall
-pos = 20,0,0,0
+pos = 0,0,0,0
 text = An impossible wall. Impassable. You mean impassable.
 /
 [object]
 name=Wall2
 model=wall
-pos = 20,2,0,0
+pos = 0,2,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall3
 model=wall
-pos = 20,4,0,0
+pos = 0,4,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall4
 model=wall
-pos = 20,6,0,0
+pos = 0,6,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall5
 model=wall
-pos = 20,8,0,0
+pos = 0,8,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall6
 model=wall
-pos = 20,10,0,0
+pos = 0,10,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall7
 model=wall
-pos = 20,12,0,0
+pos = 0,12,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall8
 model=wall
-pos = 20,14,0,0
+pos = 0,14,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall9
 model=wall
-pos = 20,16,0,0
+pos = 0,16,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Wall10
 model=wall
-pos = 20,18,0,0
+pos = 0,18,0,0
 text = An impossible wall. Impassable. You mean Impassable.
 /
 [object]
 name=Tree1
 model=tropicaltree
-pos = 20,20,0,135
+pos = 20,18,0,135
 text = What a pretty tree. It proves to anyone beyond a shadow of a doubt that this is indeed Martinique.
 /
 [object]
@@ -206,4 +220,43 @@ model=toyship
 pos = 6,6,0,50
 text = A boat.
 door = To Titanic,titanhall,cultroom
+/
+
+[object]
+name=Church
+model=church
+pos = 26,10,0,90
+text = Saint-Pierre's local church
+/
+
+[object]
+name=MountPelee
+model=volcano
+pos = 100,200,0,33
+text = This is Mount Pelee, the local harmless volcano.
+/
+
+[object]
+name=Wall17
+model=wall
+pos = 20,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall18
+model=wall
+pos = 22,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall19
+model=wall
+pos = 24,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall20
+model=wall
+pos = 26,20,0,90
+text = An impossible wall. Impassable. You mean Impassable.
 /

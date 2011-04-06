@@ -47,7 +47,7 @@ c0 w1 w1 c1
 /
 
 [object]
-name = RoomDoor
+name = SPHRoomDoor
 model = door
 pos = 0,2,0,0
 text = The door to your room. Room number 3.
@@ -55,7 +55,7 @@ door = Entrance to your room,hotelroom1,door
 /
 
 [object]
-name = CultDoor
+name = SPHCultDoor
 model = door
 pos = 0,10,0,0
 text = The door to room number 1. Surely someone significant must stay here.
@@ -63,7 +63,7 @@ door = Entrance to room 1,hotelroom2,door
 /
 
 [object]
-name = LobbyDoor
+name = SPHLobbyDoor
 model = door
 pos = 6,10,0,180
 text = The door to the hotel lobby.
@@ -74,5 +74,5 @@ door = Exit to Hotel Lobby,hotellobby,hallway
 name = BoringDoor
 model = door
 pos = 0,6,0,0
-text = The lock is broken. Or it locks from the other side. Maybe I just don't have the key.
+text = The lock is broken. Or it locks from the other side. Maybe you just don't have the key.
 /

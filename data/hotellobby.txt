@@ -46,7 +46,7 @@ street = 12,4,0
 /
 
 [object]
-name = HallDoor
+name = SPHallDoor
 model = door
 pos = 2,2,0,0
 text = The door that leads back to the hallway.
@@ -54,7 +54,7 @@ door = Door to Hall,hotelhall,lobby
 /
 
 [object]
-name = RightDoor
+name = SPHRightDoor
 model = bigdoorright
 pos = 12,6,0,180
 text = A door to outside.
@@ -62,7 +62,7 @@ door = Exit to Saint-Pierre,street,hotel
 /
 
 [object]
-name = LeftDoor
+name = SPHLeftDoor
 model = bigdoorleft
 pos = 12,4,0,180
 text = The door that leads back to the hallway.

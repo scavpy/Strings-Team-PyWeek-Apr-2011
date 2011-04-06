@@ -59,14 +59,14 @@ text = The contents of this book are horrifying. Dreadful rituals. One involving
 
 
 [object]
-name = Bedside Table
+name = CultBedside
 model = sidetable
 pos = 6.7,3,0,90
 text = You are almost certain he did not choose to store the artefact in here. It's worth looking at regardless.
 /
 
 [object]
-name = Door
+name = SPCultDoor
 model = door
 pos = 4,6,0,-90
 text = The door to the hallway. You should get out of here as soon as possible before he comes back.

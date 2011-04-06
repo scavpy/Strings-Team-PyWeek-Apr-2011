@@ -43,14 +43,14 @@ c0 w1 R1 L1 w1 w1 c1
 /
 
 [object]
-name=LeftDoor
+name=AHLeftDoor
 model=bigdoorleft
 pos = 6,8,0,-90
 text = Door to outside
 door = Exit to Saint-Pierre,street,ah
 /
 [object]
-name=RightDoor
+name=AHRightDoor
 model=bigdoorright
 pos = 4,8,0,-90
 text = Door to outside

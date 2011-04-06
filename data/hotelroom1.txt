@@ -52,7 +52,7 @@ text = A handy cupboard for storing your possessions. You don't do that of cours
 /
 
 [object]
-name = Door
+name = SPRoomDoor
 model = door
 pos = 2,6,0,-90
 text = The door to the hallway. It's only locked on the outside and you have your key anyway.
@@ -64,4 +64,5 @@ name = Curtains
 model = curtains
 pos = 4,0,0,90
 text = You feel sure that outside the window is a spledorous view of the whole of Saint-Pierre. Animated, vast and beautiful. The curtains look nice shut though.
+door = Street,street,hotel
 /

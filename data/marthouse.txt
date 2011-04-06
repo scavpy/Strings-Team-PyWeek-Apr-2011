@@ -40,7 +40,7 @@ c0 W1 w1 w1 c1 -- c0 D1 c1
 /
 
 [object]
-name = Door
+name = InMartDoor
 model = door
 pos = 14,10,0,-90
 text = The door of Martin's house.

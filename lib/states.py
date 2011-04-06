@@ -8,6 +8,7 @@ from tdgl.viewpoint import OrthoView, SceneView
 from tdgl.panel import LabelPanel
 
 from rooms import Room
+import story
 
 from math import cos,radians,sin
 
@@ -129,10 +130,7 @@ class GameState(State):
             obj = self[name]
             tpan.text = obj.text 
             tpan.prepare()
-            if getattr(obj,"door",None):
-                text,room,gate = obj.door.split(",")
-                print text
-                self.quit = (room,gate)           
+            story.action_for_object(self, name, "click")
         
     def click(self,x,y):
         self.pick_at(x,y)
