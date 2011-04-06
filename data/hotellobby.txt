@@ -1,0 +1,69 @@
+name = Hotel Santa Maria: Lobby
+
+[key]
+c = hotelroom-corner
+w = hotelroom-wall
+W = hotelroom-window
+D = hotelroom-door
+L = hotelroom-bigdoorleft
+R = hotelroom-bigdoorright
+f = room-floor
+/
+
+[gates]
+hallway = 2,2,180
+street = 12,4,0
+/
+
+[layer]
+-- f0 f0 f0 f0 f0 f0
+-- f0 f0 f0 f0 f0 f0
+-- f0 f0 f0 f0 f0 f0
+-- f0 f0 f0 f0 f0 f0
+-- f0 f0 f0 f0 f0 f0
+-- f0 f0 f0 f0 f0 f0
+/
+
+[layer]
+-- c3 w3 w3 w3 w3 c2
+-- D0 -- -- -- -- w2
+-- w0 -- -- -- -- L2
+-- w0 -- -- -- -- R2
+-- w0 -- -- -- -- w2
+-- c0 w1 w1 w1 w1 c1
+/
+
+[walk]
+0 1 1 1 1 1 1
+0 1 1 1 1 1 1
+0 1 1 1 1 1 1
+0 1 1 1 1 1 1
+0 1 1 1 1 1 1
+0 1 1 1 1 1 1
+
+[lights]
+/
+
+[object]
+name = HallDoor
+model = door
+pos = 2,2,0,0
+text = The door that leads back to the hallway.
+door = Door to Hall,hotelhall,lobby
+/
+
+[object]
+name = RightDoor
+model = bigdoorright
+pos = 12,6,0,180
+text = A door to outside.
+door = Exit to Saint-Pierre,street,hotel
+/
+
+[object]
+name = LeftDoor
+model = bigdoorleft
+pos = 12,4,0,180
+text = The door that leads back to the hallway.
+door = Exit to Saint-Pierre,street,hotel
+/

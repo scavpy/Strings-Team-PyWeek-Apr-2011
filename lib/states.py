@@ -5,6 +5,7 @@ from pyglet.window import key
 from tdgl import part, picking, lighting
 from tdgl.gl import *
 from tdgl.viewpoint import OrthoView, SceneView
+from tdgl.panel import LabelPanel
 
 from rooms import Room
 
@@ -20,7 +21,7 @@ class Player:
     def move_cam(self,cam,instant=False):
         ms = 1 if instant else 800
         cam.look_at((self.pos[0],self.pos[1],self.height),ms)
-        cam.look_from_spherical(10-self.lookup*80,self.angle,1,ms)
+        cam.look_from_spherical(-self.lookup*70,self.angle,1,ms)
     def walk(self,mag,walkable_tiles):
         a = self.angle
         x,y = self.pos
@@ -73,6 +74,7 @@ class GameState(State):
         lighting.setup()
 
     def build_parts(self,**kw):
+        menus = OrthoView("menus",[], _vport=(0,0,1024,768))
         sv = SceneView("scene",[],
                        _vport=(0.0, 128, 1.0, 1.0), 
                        _ClearColor=(0.3, 0.3, 0.3, 1.0),
@@ -96,6 +98,8 @@ class GameState(State):
                        _ClearColor=(0.1, 0, 0, 1.0),
                        _left=0, _right=1024, _top=128, _bottom=0)
         self.append(ov)
+        tpanel = LabelPanel("text", "You enter the room.", _pos=(512,64,0))
+        ov.append(tpanel)
     
     def key_press(self,sym):
         wt = self["Room"].walktiles
@@ -114,10 +118,12 @@ class GameState(State):
 
     def pick(self,label):
         prop,name,piece = label.target
+        tpan = self["text"]
         if name != "":
             obj = self[name]
-            print obj.text 
-            if getattr(obj,"door"):
+            tpan.text = obj.text 
+            tpan.prepare()
+            if getattr(obj,"door",None):
                 text,room,gate = obj.door.split(",")
                 print text
                 self.quit = (room,gate)           

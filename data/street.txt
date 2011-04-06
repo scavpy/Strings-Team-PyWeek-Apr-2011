@@ -1,0 +1,123 @@
+name = Streets of Saint-Pierre
+
+[key]
+P = path
+S = street
+C = street-corner
+# = road
+/
+
+[gates]
+hotel = 4,2,-90
+/
+
+[layer]
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+S2 S2 S2 S2 S2 S2 S2 S2 S2 C1 P0 P0
+#0 #0 #0 #0 #0 #0 #0 #0 #0 S1 P0 P0
+S0 S0 S0 S0 S0 S0 S0 S0 S0 C0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+/
+
+[walk]
+0 0 0 0 0 0 0 0 0 0
+1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1
+0 0 0 0 0 0 0 0 0 0
+/
+
+[lights]
+/
+
+[object]
+name=Hotel
+model=hotel
+pos = 4,0,0,0
+text = The Santa-Maria hotel. You speculate as to whether or not it is made of cheese. Speculate is all you can ever do.
+/
+
+[object]
+name=HotelDoors
+model=hotel-doubledoors
+pos = 4,0,0,0
+text = Doors to the Hotel
+door = To Hotel,hotellobby,street
+/
+
+[object]
+name=AH
+model=ah
+pos = 4,12,0,180
+text = The Saint-Pierre Auction House. One of the oldest buildings in the area.
+/
+
+[object]
+name=AHDoors
+model=hotel-doubledoors
+pos = 4,11.85,0,180
+text = Doors to the Auction House
+door = To Auction House,auctionhouse,door
+/
+
+[object]
+name=MartHouse
+model=martinhouse
+pos = 12,12,0,180
+text = Your old friend Martin's house.
+/
+
+[object]
+name=MartDoor
+model=door
+pos = 10,10.97,-0.45,-90
+text = The door of Martin's house.
+door = To Martin's house,marthouse,door
+/
+
+[object]
+name=Wall1
+model=wall
+pos = 20,0,0,0
+text = An impossible wall. Impassable. You mean impassable.
+/
+[object]
+name=Wall2
+model=wall
+pos = 20,2,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall3
+model=wall
+pos = 20,4,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall4
+model=wall
+pos = 20,6,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall5
+model=wall
+pos = 20,8,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall6
+model=wall
+pos = 20,10,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/
+[object]
+name=Wall7
+model=wall
+pos = 20,12,0,0
+text = An impossible wall. Impassable. You mean Impassable.
+/

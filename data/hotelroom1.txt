@@ -10,6 +10,7 @@ f = room-floor
 
 [gates]
 begin = 4,2,90
+door = 2,6,90
 /
 
 [layer]
@@ -39,7 +40,7 @@ c0 D1 c1 --
 [object]
 name = Bed
 model = bed
-pos = 0,2,0,-90
+pos = 0.5,2,0,-90
 text = The bed that you slept in. It wasn't all that comfortable but you didn't pay much anyway.
 /
 

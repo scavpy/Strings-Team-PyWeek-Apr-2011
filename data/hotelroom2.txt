@@ -1,0 +1,60 @@
+name = Hotel Santa Maria: Room 1 (The Cultist's room)
+
+[key]
+c = hotelroom-corner
+w = hotelroom-wall
+W = hotelroom-window
+D = hotelroom-door
+f = room-floor
+/
+
+[gates]
+door = 4,6,90
+/
+
+[layer]
+f0 f0 f0 f0
+f0 f0 f0 f0
+f0 f0 f0 f0
+-- f0 f0 f0
+/
+
+[layer]
+c3 w3 W3 c2
+w0 -- -- w2
+c0 -- -- w2
+-- c0 D1 c1
+/
+
+[walk]
+1 1 1 1
+1 1 1 0
+1 1 1 1
+0 1 1 1
+/
+
+[lights]
+/
+
+[object]
+name = Bed
+model = bed
+pos = 5.5,2,0,90
+text = This is the cultists bed. You can't help but notice how evil it looks.
+/
+
+[object]
+name = Bedside Table
+model = sidetable
+pos = 6.7,3,0,90
+text = You are almost certain he did not choose to store the artefact in here. It's worth looking at regardless.
+/
+
+[object]
+name = Door
+model = door
+pos = 4,6,0,-90
+text = The door to the hallway. You should get out of here as soon as possible before he comes back.
+door = Exit to Hallway,hotelhall,cultroom
+/
+

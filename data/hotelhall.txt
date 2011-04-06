@@ -1,4 +1,4 @@
-name = Hotel Santa Maria: Room 3 (Your room)
+name = Hotel Santa Maria: 1st Floor Hallway
 
 [key]
 c = hotelroom-corner
@@ -44,4 +44,35 @@ c0 w1 w1 c1
 1 1 1 1
 
 [lights]
+/
+
+[object]
+name = RoomDoor
+model = door
+pos = 0,2,0,0
+text = The door to your room. Room number 3.
+door = Entrance to your room,hotelroom1,door
+/
+
+[object]
+name = CultDoor
+model = door
+pos = 0,10,0,0
+text = The door to room number 1. Surely someone significant must stay here.
+door = Entrance to room 1,hotelroom2,door
+/
+
+[object]
+name = LobbyDoor
+model = door
+pos = 6,10,0,180
+text = The door to the hotel lobby.
+door = Exit to Hotel Lobby,hotellobby,hallway
+/
+
+[object]
+name = BoringDoor
+model = door
+pos = 0,6,0,0
+text = The lock is broken. Or it locks from the other side. Maybe I just don't have the key.
 /
