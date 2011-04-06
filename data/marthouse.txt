@@ -22,7 +22,7 @@ f0 f0 f0 f0 f0 -- f0 f0 f0
 /
 
 [layer]
-c3 w3 w3 -- c2 -- c3 w3 c2
+c3 w3 w3 w3 w2 -- c3 w3 c2
 w0 -- -- -- w2 -- w0 -- w2
 w0 -- -- -- -- w3 -- -- w2
 w0 -- -- -- -- w1 -- -- w2
@@ -61,12 +61,12 @@ text = You find it strange that all the furniture in this town is exactly the sa
 [object]
 name = Bloodstain
 model = blood-wall
-pos = 6,0,0,90
+pos = 8,0,0,90
 text = Jesus Christ... That's a lot of blood. Martin's blood ... Is that some kind of symbol?
 /
 [object]
 name = Martin
 model = martincorpse
-pos = 6,0,0,90
+pos = 8,0,0,90
 text = This is ... this was Martin. He's definately dead. There's just ... too much blood.
 /

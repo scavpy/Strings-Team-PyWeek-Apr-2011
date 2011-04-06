@@ -199,3 +199,11 @@ model=tropicaltree
 pos = 8,18,0,180
 text = What a pretty tree. It proves to anyone beyond a shadow of a doubt that this is indeed Martinique.
 /
+
+[object]
+name=Boat
+model=toyship
+pos = 6,6,0,50
+text = A boat.
+door = To Titanic,titanhall,cultroom
+/
