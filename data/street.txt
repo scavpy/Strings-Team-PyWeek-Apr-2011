@@ -2,6 +2,8 @@ name = Streets of Saint-Pierre
 
 [key]
 P = path
+G = path:street-grass
+g = path:grass
 S = street
 C = street-corner
 # = road
@@ -15,10 +17,10 @@ marthouse = 10,14,90
 /
 
 [layer]
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
-P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 G0 G0 g0 g0 g0 g0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 g0 g0 g0 g0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 G0 G0 G0 G0
 P0 C2 S2 S2 S2 S2 S2 S2 S2 S2 S2 C1 P0 P0 P0
 P0 S3 #0 #0 #0 #0 #0 #0 #0 #0 #0 S1 P0 P0 P0
 P0 C3 S0 S0 S0 S0 S0 S0 S0 I0 #0 S1 P0 P0 P0
@@ -32,11 +34,11 @@ P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0 0 0
-1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1
+0 1 1 1 1 1 1 1 1 1 1 1
+0 1 1 1 1 1 1 1 1 1 1 1
+0 1 1 1 1 1 1 1 1 1 1 1
+0 1 1 1 1 1 1 1 1 1 1 1
+0 1 1 1 1 1 1 1 1 1 1 1
 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0 0 0 0 0

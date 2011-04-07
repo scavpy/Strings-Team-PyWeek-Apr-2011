@@ -1,0 +1,22 @@
+# Blender3D MTL File: hotelroom-window.blend
+# Material Count: 2
+newmtl Material
+Ns 96.078431
+Ka 0.000000 0.000000 0.000000 1.0
+Kd 0.682713 0.725699 0.754096 0.5
+Ks 0.500000 0.500000 0.500000 1.0
+Ni 1.000000
+d 0.182406
+illum 2
+
+
+newmtl None_1900room.png
+Ns 0
+Ka 0.000000 0.000000 0.000000
+Kd 0.8 0.8 0.8
+Ks 0.8 0.8 0.8
+d 1
+illum 2
+map_Kd greenroom.png
+
+

@@ -66,3 +66,16 @@ pos = 4,0,0,90
 text = You feel sure that outside the window is a spledorous view of the whole of Saint-Pierre. Animated, vast and beautiful. The curtains look nice shut though.
 door = Street,street,hotel
 /
+
+[object]
+name=Boat
+model=toyship
+pos = 4,3,0,50
+text = A boat.
+/
+[object]
+name=House
+model=toyhouse
+pos = 4.3,3,0,30
+text = A house.
+/

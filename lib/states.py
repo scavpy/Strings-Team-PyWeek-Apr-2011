@@ -15,7 +15,7 @@ from math import cos,radians,sin
 MOVESPEED = 600
 
 class Player:
-    def __init__(self,pos,angle,height = 1.5):
+    def __init__(self,pos,angle,height = 1.2):
         self.pos = pos
         self.angle = angle
         self.lasta = angle

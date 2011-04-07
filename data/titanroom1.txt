@@ -1,0 +1,47 @@
+name = HMS Titanic: Your room
+
+[key]
+f = room-floor:titan-floor
+w = titan-wall
+d = titan-doorframe
+D = hotelroom-door:titanroom-door
+W = hotelroom-wall:titanroom-wall
+C = hotelroom-corner:titan-corner
+/
+
+[gates]
+door = 4,6,90
+/
+
+[layer]
+f0 f0 f0 f0
+f0 f0 f0 f0
+f0 f0 f0 f0
+f0 f0 f0 f0
+/
+[layer]
+C3 W3 W3 C2
+W0 -- -- W2
+W0 -- -- W2
+C0 W1 D1 C1
+/
+
+[walk]
+0 1 1 1
+1 1 1 1
+1 1 1 1
+1 1 1 1
+/
+
+[object]
+name = TTLeaveR1
+model = door
+pos = 4,6,0,-90
+text = Return to Hallway
+/
+[object]
+name = Bed
+model = bed
+pos = 1,0,0,0
+text = Your own bed. It was most comfortable as you paid a ridiculous sum for it.
+/

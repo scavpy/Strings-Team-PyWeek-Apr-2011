@@ -1,0 +1,62 @@
+name = Streets of Arkham
+
+[key]
+P = path
+G = path:street-grass
+g = path:grass
+S = street
+C = street-corner
+# = road
+I = street-incorner
+/
+
+[gates]
+begin = 10,10,180
+/
+
+[layer]
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+S2 S2 S2 S2 S2 S2 S2 S2 S2 S2 S2 S2 S2 S2 
+#0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0
+#0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0 #0
+S0 S0 S0 S0 S0 S0 S0 S0 S0 S0 S0 S0 S0 S0 
+P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0 P0
+G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2 G2
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0 g0
+/
+
+[walk]
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1 1 1 1 1 1 1
+/
+
+[object]
+name= Arkhamhouse
+model=arkhamhouse
+pos = 10,20,0,90
+text = Your Grandfather's house. You begin to wonder if he was perhaps a count of some description.
+/
+[object]
+name = ArkHDoor
+model = door
+pos = 9.96,20,0,180
+text = Door inside.
+/

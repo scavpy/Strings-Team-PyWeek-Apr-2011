@@ -48,11 +48,23 @@ ACTIONS = {
     ("HotelDoors", "click"):(change_room, "hotellobby", "street"),
     ("AHDoors", "click"):(change_room, "auctionhouse", "door"),
     ("MartDoor", "click"):(change_room, "marthouse", "door"),
+
     ("Boat", "click"):(change_room, "titandeck", "door"),
+    ("House", "click"):(change_room, "arkham", "begin"),
 
     ("AHLeftDoor", "click"):(change_room, "street", "ah"),
     ("AHRightDoor", "click"):(change_room, "street", "ah"),
     ("InMartDoor", "click"):(change_room, "street", "marthouse"),
+
+    ("CabinDoor", "click"):(change_room, "titanbar", "deck"),
+    ("DeckDoor", "click"):(change_room, "titandeck", "door"),
+    ("HallDoor", "click"):(change_room, "titanhall", "bar"),
+    ("BarDoor", "click"):(change_room, "titanbar", "hall"),
+
+    ("TTEnterR1", "click"):(change_room, "titanroom1", "door"),
+    ("TTEnterR2", "click"):(change_room, "titanroom2", "door"),
+    ("TTLeaveR1", "click"):(change_room, "titanhall", "yourroom"),
+    ("TTLeaveR2", "click"):(change_room, "titanhall", "cultroom"),
 
     ("CultBedside", "click"):(add_prop, ("Artefact","artefact",(6.7,3,0.55),90,"This is the artefact.") ),
     

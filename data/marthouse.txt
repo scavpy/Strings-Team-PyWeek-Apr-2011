@@ -49,8 +49,9 @@ door = Exit to Saint-Pierre,street,marthouse
 [object]
 name = Curtains
 model = curtains
+material = blackcurtains
 pos = 2,10,0,-90
-text = More blackout curtains. You're beginning to feel left out.
+text = More blackout curtains. They look new. You're beginning to feel left out.
 /
 [object]
 name = Table

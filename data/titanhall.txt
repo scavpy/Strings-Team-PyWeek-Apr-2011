@@ -1,20 +1,25 @@
 name = HMS Titanic: Hallway
 
 [key]
-f = room-floor
+f = room-floor:titan-floor
 w = titan-wall
 d = titan-doorframe
-D = hotelroom-door
-W = hotelroom-wall
+D = hotelroom-door:titanroom-door
+W = hotelroom-wall:titanroom-wall
 /
 
 [gates]
-deck = 2,0,-90
-bar = 2,8,90
-cultroom = 2,2,180
+bar = 2,0,-90
+yourroom = 2,6,0
+cultroom = 2,10,180
 /
 
 [layer]
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
 f0 f0 f0
 f0 f0 f0
 f0 f0 f0
@@ -27,14 +32,22 @@ W3 D3 W3
 -- -- --
 -- -- --
 -- -- --
-W1 D1 W1
+-- -- --
+-- -- --
+-- -- --
+-- -- --
+W1 W1 W1
 /
 
 [layer]
 w0 -- w2
-d0 -- w2
+d0 -- d2
 w0 -- w2
-d0 -- w2
+d0 -- d2
+w0 -- w2
+d0 -- d2
+w0 -- w2
+d0 -- d2
 w0 -- w2
 /
 
@@ -44,35 +57,72 @@ w0 -- w2
 0 1 0
 0 1 0
 0 1 0
+0 1 0
+0 1 0
+0 1 0
+0 1 0
 /
 
 [object]
-name = CultDoor
+name = TTEnterR2
 model = titan-door
-pos = 0,2,0,0
+pos = 0,10,0,0
 text = The door to someone's room.
 door = Door to Room,titanhall,deck
 /
 
 [object]
-name = RoomDoor
+name = TTEnterR1
 model = titan-door
 pos = 0,6,0,0
+text = The door to your room.
+/
+
+[object]
+name = BoringDoor1
+model = titan-door
+pos = 0,2,0,0
 text = The door to someone's room.
 /
 
 [object]
-name = DeckDoor
-model = door
-pos = 2,0,0,90
-text = The door up to the deck.
-door = Door to Room,titandeck,door
+name = BoringDoor2
+model = titan-door
+pos = 0,14,0,0
+text = The door to someone's room.
+/
+
+[object]
+name = BoringDoor3
+model = titan-door
+pos = 4,2,0,180
+text = The door to someone's room.
+/
+
+[object]
+name = BoringDoor4
+model = titan-door
+pos = 4,6,0,180
+text = The door to someone's room.
+/
+
+[object]
+name = BoringDoor5
+model = titan-door
+pos = 4,10,0,180
+text = The door to someone's room.
+/
+
+[object]
+name = BoringDoor6
+model = titan-door
+pos = 4,14,0,180
+text = The door to someone's room.
 /
 
 [object]
 name = BarDoor
 model = door
-pos = 2,8,0,-90
-text = The door into the bar.
-door = Door to Room,titanhall,deck
+pos = 2,0,0,90
+text = The door up to the deck.
 /

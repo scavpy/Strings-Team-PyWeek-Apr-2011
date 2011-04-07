@@ -1,0 +1,121 @@
+name = HMS Titanic: Bar
+
+[key]
+C = hotelroom-corner:titan-corner
+W = hotelroom-wall:titanroom-wall
+D = hotelroom-door:titanroom-door
+f = room-floor:titan-floor
+/
+
+[gates]
+deck = 10,16,90
+hall = 6,0,-90
+/
+
+[layer]
+f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0
+-- -- -- -- f0 f0 f0
+-- -- -- -- f0 f0 f0
+/
+
+[layer]
+C3 W3 W3 D3 W3 W3 C2
+W0 -- -- -- -- -- W2
+W0 -- -- -- -- -- W2
+W0 -- -- -- -- -- W2
+W0 -- -- -- -- -- W2
+W0 -- -- -- -- -- W2
+C0 W1 W1 W1 -- -- W2
+-- -- -- -- W0 -- W2
+-- -- -- -- C0 D1 C1
+/
+
+[walk]
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
+1 1 1 1 1 1 1
+0 0 0 0 1 1 1
+1 1 1 0 1 1 1
+0 0 0 0 1 1 1
+0 0 0 0 1 1 1
+/
+
+[object]
+name = barstool1
+model = barstool
+pos = 0,9.6,0,0
+text = A comfortable-looking stool. Unfortunately you don't have time for comfort.
+/
+[object]
+name = barstool2
+model = barstool
+pos = 2,9.6,0,0
+text = A comfortable-looking stool. Unfortunately you don't have time for comfort.
+/
+[object]
+name = barstool3
+model = barstool
+pos = 4,9.6,0,0
+text = A comfortable-looking stool. Unfortunately you don't have time for comfort.
+/
+
+[object]
+name = bar1
+model = bar
+pos = 0,10,0,-90
+text = The bar. Alchohol does terrible things to people. Maybe you should find out what.
+/
+[object]
+name = bar2
+model = bar
+pos = 2,10,0,-90
+text = The bar. Alchohol does terrible things to people. Maybe you should find out what.
+/
+[object]
+name = bar3
+model = bar
+pos = 4,10,0,-90
+text = The bar. Alchohol does terrible things to people. Maybe you should find out what.
+/
+[object]
+name = bar4
+model = bar-corner
+pos = 6,10,0,-90
+text = The bar. Alchohol does terrible things to people. Maybe you should find out what.
+/
+[object]
+name = bar5
+model = bar
+pos = 6,12,0,0
+text = The bar. Alchohol does terrible things to people. Maybe you should find out what.
+/
+
+[object]
+name = DeckDoor
+model = door
+pos = 10,16,0,-90
+text = The door back up to the deck.
+/
+
+[object]
+name = HallDoor
+model = door
+pos = 6,0,0,90
+text = The door to the hallway.
+/
+
+[object]
+name = PHole3
+model = porthole
+pos = 2,13,0.6,-90
+text = You can just barely make out the deck.
+/
+
