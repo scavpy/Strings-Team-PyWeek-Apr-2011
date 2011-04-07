@@ -29,6 +29,9 @@ def take_artefact(gamestate):
     add_prop(gamestate,("CultistA","cultist-threaten",(4,6,0),-90,"Oh shi-","cultist-1900"))
     gamestate["Room"].walktiles.remove((4,6))
 
+def start_speech(gamestate,conversation):
+    pass
+
 def add_prop(gamestate,p):
     """ parameters: a tuple of (name,model,pos,angle,text,material) """
     s = p[0]+" spawned"
@@ -92,9 +95,16 @@ ACTIONS = {
 
     ("CultBedside", "click"):(add_prop, ("Artefact","artefact",(6.7,3,0.55),90,"This is the artefact.",None) ),
     ("Artefact", "click"):(take_artefact,),
+
+    ("CultA1",1):(begin_speech,"CultA2"),
     
 }
 
+SPEECH = {
+    "CultA1":("What are you doing? Give me that!",["Yes","No"]),
+    "CultA2":("Hah! Fool. You should have stayed away.",[]),
+    "CultA3":("No? Are you mad? Give me it or I will shoot you! [What will you do?]",["Break the artefact","Get shot"]),
+    }
 def save_story(filename=".9nm"):
     """ save story state in a file """
     pass
