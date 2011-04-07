@@ -1,4 +1,4 @@
-name = HMS Titanic: Your room
+name = HMS Titanic: Drunk Cultist's room
 
 [key]
 f = room-floor:titan-floor

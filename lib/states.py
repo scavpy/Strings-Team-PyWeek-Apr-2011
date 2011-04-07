@@ -22,17 +22,19 @@ class Player:
         self.height = height
         self.walking = 0
         self.look = 0
+        self.stuck = False
     def move_cam(self,cam,instant=False):
         ms = 1 if instant else MOVESPEED
         cam.look_at((self.pos[0],self.pos[1],self.height),ms)
         cam.look_from_spherical(self.look*45,self.angle,1,ms)
     def walk(self,mag,walkable_tiles):
-        a = self.angle if self.angle%90 == 0 else self.lasta
-        x,y = self.pos
-        x += int(cos( radians(a) )*mag)
-        y += int(sin( radians(a) )*mag)
-        if (x,y) in walkable_tiles:
-            self.pos = (x,y)
+        if not self.stuck:
+            a = self.angle if self.angle%90 == 0 else self.lasta
+            x,y = self.pos
+            x += int(cos( radians(a) )*mag)
+            y += int(sin( radians(a) )*mag)
+            if (x,y) in walkable_tiles:
+                self.pos = (x,y)
     def turn(self,mag):
         self.lasta = self.angle
         self.angle += mag

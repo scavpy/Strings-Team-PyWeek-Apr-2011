@@ -1,0 +1,66 @@
+name = Arkham: Grandfather's House- Sitting Room
+
+[key]
+c = hotelroom-corner:greenroom-corner
+w = hotelroom-wall:greenroom-wall
+W = hotelroom-window:greenroom-window
+D = hotelroom-door:greenroom-door
+f = room-floor:green-floor
+/ 
+
+[gates]
+room1 = 10,6,0
+room3 = 2,8,90
+/
+
+[layer]
+f0 f0 f0 f0 -- --
+f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0
+/
+
+[layer]
+c3 w3 w3 w3 w3 c2
+w0 -- -- -- -- w2
+w0 -- -- -- -- w2
+w0 -- -- -- -- D2
+c0 D1 w1 w1 w1 c1
+/
+
+[walk]
+1 1 1 1 0 0
+1 1 1 1 1 1
+0 1 1 1 1 1
+1 1 1 1 1 1
+1 1 1 1 1 1
+/
+
+[object]
+name = ArkR2to3
+model = door
+pos = 2,8,0,-90
+text = This door leads to the study.
+/
+
+[object]
+name = ArkR2to1
+model = door
+pos = 10,6,0,180
+text = This door leads back to the hallway.
+/
+
+[object]
+name = Fireplace
+model = fireplace
+pos = 0,4,0,0
+text = A place of fire!
+/
+
+[object]
+name = Staircase
+model = stairs-corner
+pos = 10,0,0,180
+text = A case! Of stairs!
+/

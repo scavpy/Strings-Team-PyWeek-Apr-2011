@@ -1,0 +1,58 @@
+name = Bonded Whiskey Warehouse
+
+[key]
+w = warehouse-wall
+f = path:darkdeck
+D = warehouse-doorframe
+/
+
+[gates]
+door = 14,6,0
+/
+
+[layer]
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0 f0 f0 f0
+/
+[layer]
+w0 -- -- -- -- -- -- w2
+w0 -- -- -- -- -- -- w2
+w0 -- -- -- -- -- -- w2
+w0 -- -- -- -- -- -- D2
+w0 -- -- -- -- -- -- w2
+w0 -- -- -- -- -- -- w2
+w0 -- -- -- -- -- -- w2
+w0 -- -- -- -- -- -- w2
+/
+[layer]
+w3 w3 w3 w3 w3 w3 w3 w3
+-- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- --
+-- -- -- -- -- -- -- --
+w1 w1 w1 w1 w1 w1 w1 w1
+/
+[walk]
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+1 1 1 1 1 1 1 1
+/
+[object]
+name=WHDoor1
+model = warehouse-door
+pos = 14,6,0,180
+text = The warehouse door.
+/

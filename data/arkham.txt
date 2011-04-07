@@ -12,6 +12,7 @@ I = street-incorner
 
 [gates]
 begin = 10,10,180
+door = 10,20,0
 /
 
 [layer]
@@ -55,8 +56,39 @@ pos = 10,20,0,90
 text = Your Grandfather's house. You begin to wonder if he was perhaps a count of some description.
 /
 [object]
+name= Skyball
+model=skyball
+material = skyball-night
+pos = 0,0,0,0
+text = The sky again.
+/
+[object]
 name = ArkHDoor
 model = door
 pos = 9.96,20,0,180
 text = Door inside.
+/
+[object]
+name = Slab1
+model = pave
+pos = 10,20,0,0
+text = A simple paving slab. Who knew it could bring so much joy.
+/
+[object]
+name = Slab2
+model = pave
+pos = 10,19,0,0
+text = A simple paving slab. Who knew it could bring so much joy.
+/
+[object]
+name = Slab3
+model = pave
+pos = 10,18,0,0
+text = A simple paving slab. Who knew it could bring so much joy.
+/
+[object]
+name = Slab4
+model = pave
+pos = 10,17,0,0
+text = A simple paving slab. Who knew it could bring so much joy.
 /

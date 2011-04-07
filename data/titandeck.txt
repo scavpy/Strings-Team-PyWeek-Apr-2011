@@ -46,6 +46,14 @@ text = Door to Bar.
 /
 
 [object]
+name = Skyball
+model = skyball
+material = skyball-sea
+pos = 0,0,0,0
+text = Sky.
+/
+
+[object]
 name = PHole1
 model = porthole
 pos = 17,14,0,180
@@ -56,4 +64,52 @@ name = PHole2
 model = porthole
 pos = 17,4,0,180
 text = A porthole. You can see tables inside.
+/
+[object]
+name = Fence1
+model = fence
+pos = 2,18,0,-90
+text = You assume this is to stop people falling off the ship.
+/
+[object]
+name = Fence2
+model = fence
+pos = 4,18,0,-90
+text = You assume this is to stop people falling off the ship.
+/
+[object]
+name = Fence3
+model = fence
+pos = 6,18,0,-90
+text = You assume this is to stop people falling off the ship.
+/
+[object]
+name = Fence4
+model = fence
+pos = 8,18,0,-90
+text = You assume this is to stop people falling off the ship.
+/
+[object]
+name = Fence5
+model = fence
+pos = 10,18,0,-90
+text = You assume this is to stop people falling off the ship.
+/
+[object]
+name = Fence6
+model = fence
+pos = 12,18,0,-90
+text = You assume this is to stop people falling off the ship.
+/
+[object]
+name = Fence7
+model = fence
+pos = 14,18,0,-90
+text = You assume this is to stop people falling off the ship.
+/
+[object]
+name = Fence8
+model = fence
+pos = 16,18,0,-90
+text = You assume this is to stop people falling off the ship.
 /

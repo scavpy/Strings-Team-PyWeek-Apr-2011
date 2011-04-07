@@ -1,0 +1,52 @@
+name = Arkham: Grandfather's House- Study
+
+[key]
+c = hotelroom-corner:greenroom-corner
+w = hotelroom-wall:greenroom-wall
+W = hotelroom-window:greenroom-window
+D = hotelroom-door:greenroom-door
+f = room-floor:green-floor
+/ 
+
+[gates]
+room1 = 8,4,0
+room2 = 4,0,-90
+/
+
+[layer]
+f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0
+f0 f0 f0 f0 f0
+/
+
+[layer]
+c3 w3 D3 w3 c2
+w0 -- -- -- w2
+w0 -- -- -- D2
+w0 -- -- -- w2
+c0 w1 w1 w1 c1
+/
+
+[walk]
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+1 1 1 1 1
+/
+
+[object]
+name = ArkR3to1
+model = door
+pos = 8,4,0,180
+text = This door leads back to the hallway.
+/
+
+[object]
+name = ArkR3to2
+model = door
+pos = 4,0,0,90
+text = This door leads to the sitting room.
+/

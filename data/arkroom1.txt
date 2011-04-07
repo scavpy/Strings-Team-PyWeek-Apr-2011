@@ -1,0 +1,68 @@
+name = Arkham: Grandfather's House- Hallway
+
+[key]
+c = hotelroom-corner:greenroom-corner
+w = hotelroom-wall:greenroom-wall
+W = hotelroom-window:greenroom-window
+D = hotelroom-door:greenroom-door
+f = room-floor:green-floor
+/ 
+
+[gates]
+street = 2,0,-90
+room2 = 0,2,180
+room3 = 0,6,180
+/
+
+[layer]
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+f0 f0 f0
+/
+
+[layer]
+c3 D3 c2
+D0 -- w2
+w0 -- w2
+D0 -- W2
+c0 w1 c1
+/
+
+[walk]
+1 1 1
+1 1 1
+1 1 1
+1 1 1
+1 1 1
+/
+
+[object]
+name = ArkR1to2
+model = door
+pos = 0,2,0,0
+text = This is the door to the sitting room.
+/
+
+[object]
+name = ArkR1to3
+model = door
+pos = 0,6,0,0
+text = This door leads to the study.
+/
+
+[object]
+name = ArkHtoStreet
+model = door
+pos = 2,0,0,90
+text = The front door.
+/
+
+[object]
+name = Curtains
+model = curtains
+material = green-curtains
+pos = 4,6,0,180
+text = The curtains are closed. You understand why; the place is a mess.
+/

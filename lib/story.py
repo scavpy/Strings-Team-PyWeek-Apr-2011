@@ -15,16 +15,29 @@ from rooms import PropPart
 def change_room(gamestate, room, gate):
     gamestate.quit = room, gate
 
-def take_artifact(gamestate):
+def key_check(gamestate, keyname, room, gate, status):
+    if (keyname in EVENTS) == status:
+        change_room(gamestate,room,gate)
+
+def take_artefact(gamestate):
     """ Adds item to inventory and spawns a cultist behind you.
     Removes ability to walk."""
-    pass
+    gp = gamestate.player
+    gp.angle = gp.langle = -90
+    gp.move_cam(gamestate.camera)
+    EVENTS.add("caught stealing")
+    add_prop(gamestate,("CultistA","cultist-threaten",(4,6,0),-90,"Oh shi-","cultist-1900"))
+    gamestate["Room"].walktiles.remove((4,6))
 
 def add_prop(gamestate,p):
-    """ parameters: a tuple of (name,model,pos,angle,text) """
+    """ parameters: a tuple of (name,model,pos,angle,text,material) """
     s = p[0]+" spawned"
     if s not in EVENTS:
-        prop = PropPart(p[0],_obj_filename=p[1]+".obj",_pos=p[2],_angle=p[3])
+        if p[5]:
+            m = p[5]+".mtl"
+        else:
+            m = p[5]
+        prop = PropPart(p[0],_obj_filename=p[1]+".obj",_pos=p[2],_angle=p[3],_mat_filename=m)
         prop.text = p[4]
         prop.prepare()
         gamestate["Room"].append(prop)
@@ -37,7 +50,8 @@ EVENTS = set()
 
 ACTIONS = {
     ("SPRoomDoor", "click"):(change_room, "hotelhall", "yourroom"),
-    ("SPCultDoor", "click"):(change_room, "hotelhall", "cultroom"),
+    ("SPCultDoor", "click"):(key_check, "caught stealing",
+                             "hotelhall", "cultroom", False),
     ("SPHRoomDoor", "click"):(change_room, "hotelroom1", "door"),
     ("SPHCultDoor", "click"):(change_room, "hotelroom2", "door"),
     ("SPHLobbyDoor", "click"):(change_room, "hotellobby", "hallway"),
@@ -51,6 +65,7 @@ ACTIONS = {
 
     ("Boat", "click"):(change_room, "titandeck", "door"),
     ("House", "click"):(change_room, "arkham", "begin"),
+    ("ToyBarrel", "click"):(change_room, "warehousehall", "door"),
 
     ("AHLeftDoor", "click"):(change_room, "street", "ah"),
     ("AHRightDoor", "click"):(change_room, "street", "ah"),
@@ -66,7 +81,17 @@ ACTIONS = {
     ("TTLeaveR1", "click"):(change_room, "titanhall", "yourroom"),
     ("TTLeaveR2", "click"):(change_room, "titanhall", "cultroom"),
 
-    ("CultBedside", "click"):(add_prop, ("Artefact","artefact",(6.7,3,0.55),90,"This is the artefact.") ),
+    ("ArkHDoor", "click"):(change_room, "arkroom1", "street"),
+    ("ArkR1to2", "click"):(change_room, "arkroom2", "room1"),
+    ("ArkR1to3", "click"):(change_room, "arkroom3", "room1"),
+    ("ArkHtoStreet", "click"):(change_room, "arkham", "door"),
+    ("ArkR2to1", "click"):(change_room, "arkroom1", "room2"),
+    ("ArkR2to3", "click"):(change_room, "arkroom3", "room2"),
+    ("ArkR3to1", "click"):(change_room, "arkroom1", "room3"),
+    ("ArkR3to2", "click"):(change_room, "arkroom2", "room3"),
+
+    ("CultBedside", "click"):(add_prop, ("Artefact","artefact",(6.7,3,0.55),90,"This is the artefact.",None) ),
+    ("Artefact", "click"):(take_artefact,),
     
 }
 

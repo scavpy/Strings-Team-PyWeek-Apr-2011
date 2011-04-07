@@ -55,6 +55,13 @@ text = The Santa-Maria hotel. You speculate as to whether or not it is made of c
 /
 
 [object]
+name=Skyball
+model=skyball
+pos = 0,0,0,0
+text = This is the sky. There is little to no chance of it being filled with pyroclastic dust today.
+/
+
+[object]
 name=HotelDoors
 model=hotel-doubledoors
 pos = 4,4,0,0

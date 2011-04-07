@@ -79,3 +79,9 @@ model=toyhouse
 pos = 4.3,3,0,30
 text = A house.
 /
+[object]
+name=ToyBarrel
+model=toybarrel
+pos = 4.1,2.7,0,0
+text = A barrel.
+/
