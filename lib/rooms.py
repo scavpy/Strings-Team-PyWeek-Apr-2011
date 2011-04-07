@@ -19,6 +19,7 @@ class Room(part.Group):
         self.key = {}
         self.gates = {}
         self.data = []
+        self.flags = set()
         self.walktiles = set()
         self.loadfile(fname)
         self.buildparts(**kw)
@@ -29,36 +30,41 @@ class Room(part.Group):
         roomdata = data.load(fname)
         lines = roomdata.readlines()
         for L in lines:
-            if L.strip():
-                if L.startswith("/"):
-                    if mode == "object":
-                        self.add_prop(prop)
-                        prop = {}
-                    mode = "reading"
-                elif mode == "reading":
-                    if L.startswith("name"):
-                        self.name = L.split("=")[1].strip()
-                    elif L.startswith("["):
-                        mode = L.strip("[]\n")
-                        self.width = 0
-                        self.height = 0
-                elif mode == "key":
-                    k,v = L.split("=")
-                    style = v.strip().split(":")                    
-                    self.key[k.strip()] = style
-                elif mode == "layer":
-                    row = L.split()
-                    self.add_cells(row)
-                elif mode == "gates":
-                    k,v = L.split("=")
-                    gate = v.strip().split(",")
-                    self.gates[k.strip()] = tuple(int(x) for x in gate)
-                elif mode == "walk":
-                    row = L.split()
-                    self.add_cells(row,walk=True)
-                elif mode == "object":
-                    k,v = L.split("=")
-                    prop[k.strip()] = v.strip()
+            L = L.strip()
+            if not L:
+                continue
+            if L.startswith("/"):
+                if mode == "object":
+                    self.add_prop(prop)
+                    prop = {}
+                mode = "reading"
+            elif mode == "reading":
+                if L.startswith("name"):
+                    self.name = L.split("=")[1].strip()
+                elif L.startswith("flags"):
+                    _1, _2, rest = L.partition("=")
+                    self.flags = set(rest.split())
+                elif L.startswith("["):
+                    mode = L.strip("[]\n")
+                    self.width = 0
+                    self.height = 0
+            elif mode == "key":
+                k,v = L.split("=")
+                style = v.strip().split(":")
+                self.key[k.strip()] = style
+            elif mode == "layer":
+                row = L.split()
+                self.add_cells(row)
+            elif mode == "gates":
+                k,v = L.split("=")
+                gate = v.strip().split(",")
+                self.gates[k.strip()] = tuple(int(x) for x in gate)
+            elif mode == "walk":
+                row = L.split()
+                self.add_cells(row,walk=True)
+            elif mode == "object":
+                k,v = (s.strip() for s in L.split("="))
+                prop[k] = v
     def add_cells(self,row,walk=False):
         """ Returns a tuple with the format (objfile,pos,angle) """
         self.width = max(self.width,len(row))
