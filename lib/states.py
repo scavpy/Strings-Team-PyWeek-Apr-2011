@@ -82,11 +82,14 @@ class GameState(State):
 
     def build_parts(self,**kw):
         menus = OrthoView("menus",[], _vport=(0,0,1024,768))
+        with menus.compile_style():
+            glDisable(GL_LIGHTING)
         sv = SceneView("scene",[],
                        _vport=(0.0, 128, 1.0, 1.0), 
                        _ClearColor=(0.3, 0.3, 0.3, 1.0),
                        _perspective_angle=30.0)
         hroom = Room("Room",self.room+".txt")
+        outdoors = "outdoors" in hroom.flags
         ppos = hroom.gates.get(self.start,(0,0,0))
         self.player = Player((ppos[0],ppos[1]),ppos[2])
         sv.append(hroom)
@@ -99,13 +102,19 @@ class GameState(State):
         lighting.light_position(self.light,(hroom.width/2, hroom.height/2, 2,1))
         lighting.light_colour(self.light,(1,1,0.9,1))
         lighting.light_switch(self.light,True)
+        if not outdoors:
+            lighting.light_attenuation(self.light, (0.01,))
         self.append(sv)
         ov = OrthoView("itembar", [],
                        _vport=(0.0,0.0,1.0,128),
                        _ClearColor=(0.1, 0, 0, 1.0),
                        _left=0, _right=1024, _top=128, _bottom=0)
+        with ov.compile_style():
+            glDisable(GL_LIGHTING)
         self.append(ov)
-        tpanel = LabelPanel("text", "You enter the room.", _pos=(512,64,0))
+        tpanel = LabelPanel("text", "You go outside" if outdoors else "You enter the room", 
+                            _text_width=1000, _pos=(512,32,0))
+        tpanel.setgeom("text_width", 1000)
         ov.append(tpanel)
     
     def key_press(self,sym):

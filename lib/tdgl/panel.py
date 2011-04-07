@@ -43,7 +43,8 @@ class Panel(part.ScalePart):
         self.bgdl = dl     # for background
         self.bddl = dl + 1 # for border
     def __del__(self):
-        glDeleteLists(self.bgdl,2)
+        if glDeleteLists:
+            glDeleteLists(self.bgdl,2) #PyWeek12
     def render(self,mode="OPAQUE"):
         if mode == 'PICK':
             picking.label(self)
@@ -166,6 +167,7 @@ class LabelPanel(Panel):
     _default_style.update(dict(fg=(1,1,1,1),
                                font=None,
                                font_size=16,
+                               text_width=None,
                                italic=False,
                                bold=False))
     _style_attributes = tuple(_default_style.keys())
