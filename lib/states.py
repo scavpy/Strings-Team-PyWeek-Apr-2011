@@ -99,6 +99,7 @@ class GameState(State):
         lighting.light_position(self.light,(hroom.width/2, hroom.height/2, 2,1))
         lighting.light_colour(self.light,(1,1,0.9,1))
         lighting.light_switch(self.light,True)
+        lighting.light_attenuation(self.light, (0.01,))
         self.append(sv)
         ov = OrthoView("itembar", [],
                        _vport=(0.0,0.0,1.0,128),
