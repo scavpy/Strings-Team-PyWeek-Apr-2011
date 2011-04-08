@@ -10,7 +10,7 @@ C = titanic-cabin
 /
 
 [gates]
-door = 14,18,0
+door = 16,16,0
 begin = 10,10,0
 /
 
@@ -43,7 +43,7 @@ W3 f1 f1 f1 f1 f1 f1 f1 C3 b2
 [object]
 name = CabinDoor
 model = steeldoor
-pos = 16,18,0,180
+pos = 18,16,0,180
 text = Door to Bar.
 /
 

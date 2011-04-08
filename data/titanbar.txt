@@ -33,7 +33,7 @@ W0 -- -- -- -- -- W2
 W0 -- -- -- -- -- W2
 C0 W1 W1 W1 -- -- W2
 -- -- -- -- W0 -- W2
--- -- -- -- C0 D1 C1
+-- -- -- -- C0 W1 C1
 /
 
 [walk]
@@ -100,8 +100,8 @@ text = The bar. Alchohol does terrible things to people. Maybe you should find o
 
 [object]
 name = DeckDoor
-model = door
-pos = 10,16,0,-90
+model = steeldoor
+pos = 10,17.97,0,-90
 text = The door back up to the deck.
 /
 
