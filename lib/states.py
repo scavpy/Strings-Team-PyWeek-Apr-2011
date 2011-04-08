@@ -68,6 +68,9 @@ class State(part.Group):
     
     def pick(self,label):
         pass
+
+    def nothing_near(self):
+        pass
     
     def pick_at(self,x,y):
         """Pick topmost object at x,y"""
@@ -76,7 +79,10 @@ class State(part.Group):
         objects = picking.end()
         if objects:
             minz,maxz,label = objects[0]
-            self.pick(label)
+            if minz > 1.75:
+                self.nothing_near()
+            else:
+                self.pick(label)
 
 
 class GameState(State):
@@ -159,8 +165,6 @@ class GameState(State):
                 self.player.look = max(self.player.look-1,-1)
             elif sym == key.END:
                 self.player.look = min(self.player.look+1,1)
-            elif sym == key.ESCAPE:
-                self.fade_to((1,0,0,0), "Chapter2", "begin")
             self.player.move_cam(self.camera)
         elif self.speaking and self.options:
             s = key.symbol_string(sym).strip("_")
@@ -195,14 +199,23 @@ class GameState(State):
         self.quit_after_fade_out = room, gate
         lighting.light_colour(self.light, fcolour, 5000)
 
+    def footer_text(self, text):
+        tpan = self["text"]
+        tpan.text = text
+        tpan.prepare()
+
+    def nothing_near(self):
+        self.footer_text("you can't touch things that are too far away")
+
     def pick(self,label):
         prop,name,piece = label.target
-        tpan = self["text"]
+        text = self["Room"].name
         if name != "":
             obj = self[name]
             if not story.action_for_object(self, name, "click"):
-                tpan.text = obj.text 
-                tpan.prepare()
+                if obj.text:
+                    text = obj.text
+        self.footer_text(text)
         
     def click(self,x,y):
         if not self.speaking:

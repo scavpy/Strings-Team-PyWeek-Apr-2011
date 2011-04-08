@@ -235,7 +235,7 @@ SPEECH = {
         " are active on the caribbean island of Martinique, so you go to see what they are up to.",
         ["Begin"]),
     "EndChapter1":(
-        "A huge cloud of glowing smoke is rushes down from Mont Pelee, burning and sweeping aside everything in its path.\n"
+        "A huge cloud of glowing smoke rushes down from Mont Pelee, burning and sweeping aside everything in its path.\n"
         "Before you die, you have time to wonder what the cultists would have been able to do with the artefact"
         " if you hadn't stopped them...", ["End of Chapter 1"]),
 
