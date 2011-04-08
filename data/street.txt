@@ -12,7 +12,7 @@ I = street-incorner
 /
 
 [gates]
-hotel = 4,6,-90
+hotel = 4,6,270
 ah = 4,14,90
 marthouse = 10,14,90
 /
@@ -95,7 +95,7 @@ text = Your old friend Martin's house.
 [object]
 name=MartDoor
 model=door
-pos = 10,14.97,-0.45,-90
+pos = 10,14.97,-0.45,270
 text = The door of Martin's house.
 door = To Martin's house,marthouse,door
 /
@@ -225,18 +225,10 @@ text = What a pretty tree. It proves to anyone beyond a shadow of a doubt that t
 /
 
 [object]
-name=Boat
-model=toyship
-pos = 6,6,0,50
-text = A boat.
-door = To Titanic,titanhall,cultroom
-/
-
-[object]
 name=Church
 model=church
 pos = 26,10,0,90
-text = Saint-Pierre's local church
+text = The local church
 /
 
 [object]

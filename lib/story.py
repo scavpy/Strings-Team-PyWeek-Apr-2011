@@ -148,7 +148,7 @@ ACTIONS = {
     ("DLady4",1):(begin_speech,"DLady5"),
     ("DLady4",2):(begin_speech,"DLady6"),
     ("DLady4",3):(begin_speech,"DLady7"),
-    ("DLady7",1):(add_prop,("CultKey","key",(8,9.5,0.7),90,"A key.",None),False),
+    ("DLady7",1):(add_prop,("CultKey","key",(8.2,9.7,0.7),90,"A key.",None),False),
     ("CultKey","click"):(take_object,"CultKey","cult key","You subtly pocket the key to the cultists room."),
 
     ("CultBedside", "click"):(begin_speech,"BedsideOpt"),
