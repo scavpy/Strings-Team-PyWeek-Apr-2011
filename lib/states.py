@@ -27,29 +27,59 @@ bubble_style = {
     }
 
 class Player:
-    def __init__(self,pos,angle,height = 1.2):
+    def __init__(self,pos,angle,height,camera):
         self.pos = pos
         self.angle = angle
-        self.lasta = angle
         self.height = height
         self.walking = 0
         self.look = 0
         self.stuck = False
-    def move_cam(self,cam,instant=False):
-        ms = 1 if instant else MOVESPEED
+        self.deltas = {
+            0:(1,0), 45:(1,1), 90:(0,1), 135:(-1,1),
+            180:(-1,0), 225:(-1,-1), 270:(0,-1), 315:(1,-1),
+            -315:(1,1), -270:(0,1), -225:(-1,1),
+            -180:(-1,0), -135:(-1,-1), -90:(0,-1), -45:(1,-1),
+            }
+        self.camera = camera
+        self.speed = 1
+        self.move_cam(True)
+
+    def move_cam(self,instant=False):
+        ms = 1 if instant else MOVESPEED * max(self.speed, 1)
+        cam = self.camera
         cam.look_at((self.pos[0],self.pos[1],self.height),ms)
         cam.look_from_spherical(self.look*45,self.angle,1,ms)
+
     def walk(self,mag,walkable_tiles):
         if not self.stuck:
-            a = self.angle if self.angle%90 == 0 else self.lasta
+            dx, dy = self.deltas[self.angle]
             x,y = self.pos
-            x += int(cos( radians(a) )*mag)
-            y += int(sin( radians(a) )*mag)
+            x += dx * mag
+            y += dy * mag
             if (x,y) in walkable_tiles:
                 self.pos = (x,y)
-    def turn(self,mag):
+                self.speed = mag * (1.4 if (dx and dy) else 1)
         self.lasta = self.angle
-        self.angle += mag
+        self.move_cam()
+
+    def turn(self,mag):
+        if self.angle in (360, -360):
+            self.angle = 0
+            self.camera.look_from_spherical(self.look*45, 0,1,0)
+            self.camera.step(1)
+        self.angle = self.angle + mag
+        self.speed = 1
+        self.move_cam()
+
+    def look_up(self):
+        self.look = max(self.look-1,-1)
+        self.speed = 1
+        self.move_cam()
+
+    def look_down(self):
+        self.look = min(self.look+1, 1)
+        self.speed = 1
+        self.move_cam()
 
 class State(part.Group):
     def __init__(self,name="",**kw):
@@ -66,7 +96,10 @@ class State(part.Group):
     def key_press(self,sym):
         pass
     
-    def pick(self,label):
+    def pick(self,label,x,y):
+        pass
+
+    def nothing_near(self):
         pass
     
     def pick_at(self,x,y):
@@ -76,23 +109,36 @@ class State(part.Group):
         objects = picking.end()
         if objects:
             minz,maxz,label = objects[0]
-            self.pick(label)
+            if minz > 1.6:
+                self.nothing_near()
+            else:
+                self.pick(label,x,y)
 
 
 class GameState(State):
-    def __init__(self,name="",room="hotelroom1",start="begin",**kw):
+    def __init__(self,name="",room="Chapter1",start="begin",**kw):
         self.light = lighting.claim_light()
         self.room = room
         self.start = start
         self.speaking = False
         self.options = None
+        self.quit_after_fade_out = None
         super(GameState,self).__init__(name,**kw)
+        story.action_for_object(self, room, "begin")
 
     def __del__(self):
         lighting.release_light(self.light)
 
     def setup_style(self):
         lighting.setup()
+
+    def step(self, ms):
+        super(GameState, self).step(ms)
+        lighting.step(ms)
+        if self.quit_after_fade_out:
+            if lighting.conditions[GL_LIGHT0 + self.light].finished():
+                self.quit = self.quit_after_fade_out
+                self.quit_after_fade_out = None
 
     def build_parts(self,**kw):
         menus = OrthoView("menus",[], _vport=(0,0,1024,768))
@@ -105,10 +151,9 @@ class GameState(State):
         hroom = Room("Room",self.room+".txt")
         outdoors = "outdoors" in hroom.flags
         ppos = hroom.gates.get(self.start,(0,0,0))
-        self.player = Player((ppos[0],ppos[1]),ppos[2])
         sv.append(hroom)
         self.camera = sv.camera
-        self.player.move_cam(self.camera,instant=True)
+        self.player = Player((ppos[0],ppos[1]),ppos[2], 1.2, self.camera)
         with sv.compile_style():
             glEnable(GL_LIGHTING)
         lighting.two_side(True)
@@ -130,7 +175,7 @@ class GameState(State):
             glDisable(GL_LIGHTING)
         self.append(ov)
         self.append(speechport)
-        tpanel = LabelPanel("text", "You go outside" if outdoors else "You enter the room", 
+        tpanel = LabelPanel("text", hroom.name, 
                             _text_width=1000, _pos=(512,48,0))
         ov.append(tpanel)
     
@@ -146,10 +191,9 @@ class GameState(State):
             elif sym == key.LEFT:
                 self.player.turn(45)
             elif sym == key.HOME:
-                self.player.look = max(self.player.look-1,-1)
+                self.player.look_up()
             elif sym == key.END:
-                self.player.look = min(self.player.look+1,1)
-            self.player.move_cam(self.camera)
+                self.player.look_down()
         elif self.speaking and self.options:
             s = key.symbol_string(sym).strip("_")
             try:
@@ -178,14 +222,29 @@ class GameState(State):
             self.options = None
             story.action_for_object(self,c,choice)
 
-    def pick(self,label):
-        prop,name,piece = label.target
+    def fade_to(self, fcolour, room, gate):
+        print fcolour, room, gate
+        self.quit_after_fade_out = room, gate
+        lighting.light_colour(self.light, fcolour, 5000)
+
+    def footer_text(self, text):
         tpan = self["text"]
+        tpan.text = text
+        tpan.prepare()
+
+    def nothing_near(self):
+        self.player.walk(-2, self["Room"].walktiles)
+        self.footer_text("you can't touch things that are too far away")
+
+    def pick(self,label,x,y):
+        prop,name,piece = label.target
+        text = self["Room"].name
         if name != "":
             obj = self[name]
-            if not story.action_for_object(self, name, "click"):
-                tpan.text = obj.text 
-                tpan.prepare()
+            if obj.text:
+                text = obj.text
+            story.action_for_object(self, name, "click")
+        self.footer_text(text)
         
     def click(self,x,y):
         if not self.speaking:

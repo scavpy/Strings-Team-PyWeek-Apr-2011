@@ -1,0 +1,5 @@
+name = Game Over
+
+[gates]
+begin = 0,0,0
+/

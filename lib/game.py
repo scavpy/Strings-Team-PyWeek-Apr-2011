@@ -13,9 +13,8 @@ class GameWin(pyglet.window.Window):
     def __init__(self,**kw):
         super(GameWin,self).__init__(**kw)
         pyglet.clock.schedule(self.on_tick)
-        self.previous = ("hotelhall","yourroom")
         self.newstate = None
-        self.state = GameState(room="hotelroom1",start="begin")
+        self.state = GameState(room="Chapter1",start="begin")
 
     def on_tick(self,secs):
         ms = secs*1000

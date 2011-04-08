@@ -50,6 +50,9 @@ def martin_scare(gamestate):
     tpan.text = "Nothing. You are disappointed. Relieved, but disappointed."
     tpan.prepare()
 
+def chapter_end(gamestate, fadecolour, chapter):
+    gamestate.fade_to(fadecolour, chapter, "begin")
+    
 def take_object(gamestate,item,event,text):
     o = gamestate["Room"][item]
     gamestate["Room"].remove(o)
@@ -126,6 +129,15 @@ ACTIONS = {
     ("ArkR3to1", "click"):(change_room, "arkroom1", "room3"),
     ("ArkR3to2", "click"):(change_room, "arkroom2", "room3"),
 
+#---> Chapter intros
+    ("Chapter1", "begin"):(begin_speech,"BeginChapter1"),
+    ("BeginChapter1",1):(change_room, "hotelroom1", "begin"),
+
+    ("Chapter2", "begin"):(begin_speech,"BeginChapter2"),
+    ("BeginChapter2",1):(change_room, "titandeck", "door"),
+    ("BeginChapter2",2):(begin_speech,"Tough"),
+    ("Tough",1):(change_room, "titandeck", "door"),
+
 #---> Saint-Pierre events
     ("HotelDeskLady", "click"):(do_ifelse,set(("cultist IDed",)),set(("cult key",)),
                                 ("HotelDeskLady","askcult"),("HotelDeskLady","askmart")),
@@ -136,7 +148,7 @@ ACTIONS = {
     ("DLady4",1):(begin_speech,"DLady5"),
     ("DLady4",2):(begin_speech,"DLady6"),
     ("DLady4",3):(begin_speech,"DLady7"),
-    ("DLady7",1):(add_prop,("CultKey","key",(8,9.5,0.7),90,"A key.",None),False),
+    ("DLady7",1):(add_prop,("CultKey","key",(8.2,9.7,0.7),90,"A key.",None),False),
     ("CultKey","click"):(take_object,"CultKey","cult key","You subtly pocket the key to the cultists room."),
 
     ("CultBedside", "click"):(begin_speech,"BedsideOpt"),
@@ -170,10 +182,13 @@ ACTIONS = {
     ("CultA1",1):(begin_speech,"CultA4"),
     ("CultA1",2):(begin_speech,"CultA2"),
     ("CultA1",3):(begin_speech,"CultA3"),
+    ("CultA2",1):(chapter_end, (0.5,0,0,1), "GameOver"),
     ("CultA4",1):(begin_speech,"CultA3"),
     ("CultA4",2):(begin_speech,"CultA2"),
     ("CultA3",1):(begin_speech,"CultA5"),
     ("CultA3",2):(begin_speech,"CultA2"),
+    ("CultA5",1):(begin_speech,"EndChapter1"),
+    ("EndChapter1",1):(chapter_end, (0.5,0,0,1), "Chapter2"),
 
 #---> Titanic events
     
@@ -182,10 +197,10 @@ ACTIONS = {
 SPEECH = {
 #---> Saint-Pierre
     "CultA1":('"What are you doing? Give me that!"',["Did you kill Martin?","OK","No"]),
-    "CultA2":('"Hah! Fool. You should have stayed away. [Shot dead]"',[]),
+    "CultA2":('"Hah! Fool. You should have stayed away. [He shoots you.]"',["Game Over"]),
     "CultA3":('"No? Are you mad? Give me it or I will shoot you!" [What will you do? He seems to be very nervous. The artefact must be precious to him.]',["Destroy the artefact","Get shot"]),
     "CultA4":('"Martin? What does it matter when- No! You don\'t ask me questions! Give me the artefact!"',["No","OK"]),
-    "CultA5":('"What have you done!? Oh Gods! [He panicks. You have no clue. Mount Pelee erupts. You get a TKO by volcano but still die. On to the Titanic]"',[]),
+    "CultA5":('"What have you done!? Oh Gods!\n[He panics. There is a rumbling outside.]"',["What's that noise?"]),
 
     "DLady1":('"Hello, how may I help you?"',["Do you know where M. Martin DuPont lives?","Nothing, thank you."]),
     "DLady2":('"Alright, good day sir."',[]),
@@ -212,6 +227,26 @@ SPEECH = {
     "AHartefact":('"Oh hello. Umm, you\'re a little early for the auction..."',["Yes I know. Can you tell what this item is?"]),
     "AHartefact2":('"Umm, that\'s umm... well no I\'m not sure. You could try, er, asking the gentleman who purchased it yesterday. He umm, seemed quite determined to get his hands on it."',["And what gentleman was this?"]),
     "AHartefact3":('"Oo, um, let me, er, see I... I never caught his name. All I remember is that he wore a brown shirt and had a rather large moustache. I think he stays at the umm, Santa Maria hotel."',["Thank you, you've been most UMM-helpful..."]),
+ 
+    "BeginChapter1":(
+        "You have spent many years investigating supernatural phenomena (without success). But you keep finding"
+        " references to one particular ancient cult with disturbing beliefs.\n"
+        "Recently you received a letter from an old friend Martin DuPont, which leads you to believe the cult"
+        " are active on the caribbean island of Martinique, so you go to see what they are up to.",
+        ["Begin"]),
+    "EndChapter1":(
+        "A huge cloud of glowing smoke rushes down from Mont Pelee, burning and sweeping aside everything in its path.\n"
+        "Before you die, you have time to wonder what the cultists would have been able to do with the artefact"
+        " if you hadn't stopped them...", ["End of Chapter 1"]),
+
+    "BeginChapter2":(
+        "After your father died in Martinique, your mother moved back from America to Glasgow. She lived well and"
+        " died peacefully leaving you a large inheritance.\n"
+        "You decide to return to your old house in Arkham and find out more about your father's life.\n"
+        "Taking his old notes and diaries to read on the long sea voyage, you book passage on the maiden voyage of"
+        " the world's greatest ship: The Titanic", ["Begin", "No wait, I can see this isn't going to go well..."]),
+    "Tough":("Tough.\nGet on with it, you've got a world to save.", ["Fine."]),
+
     }
 def save_story(filename=".9nm"):
     """ save story state in a file """
