@@ -41,14 +41,12 @@ def take_artefact(gamestate):
     take_object(gamestate,"Artefact","caught stealing","You take the artefact only to hear a slam and a click behind you.")
     add_prop(gamestate,("CultistA","cultist-threaten",(4,6,0),-90,"Cultist","cultist-1900"),True)
     gamestate["Room"].walktiles.remove((4,6))
+    gp.watching_me = gamestate["CultistA"]
 
 def martin_scare(gamestate):
     gp = gamestate.player
-    gp.angle -= 180
-    gp.move_cam(gamestate.camera)
-    tpan = gamestate["text"]
-    tpan.text = "Nothing. You are disappointed. Relieved, but disappointed."
-    tpan.prepare()
+    gp.turn(-180)
+    gamestate.footer_text("Nothing. You are disappointed. Relieved, but disappointed.")
 
 def chapter_end(gamestate, fadecolour, chapter):
     gamestate.fade_to(fadecolour, chapter, "begin")
@@ -57,9 +55,7 @@ def take_object(gamestate,item,event,text):
     o = gamestate["Room"][item]
     gamestate["Room"].remove(o)
     EVENTS.add(event)
-    tpan = gamestate["text"]
-    tpan.text = text
-    tpan.prepare()
+    gamestate.footer_text(text)
 
 def begin_speech(gamestate,conversation):
     t,o = SPEECH[conversation]
@@ -132,7 +128,7 @@ ACTIONS = {
 #---> Chapter intros
     ("Chapter1", "begin"):(begin_speech,"BeginChapter1"),
     ("BeginChapter1",1):(change_room, "hotelroom1", "begin"),
-
+    ("BeginChapter1",2):(change_room, "Chapter2", "begin"),
     ("Chapter2", "begin"):(begin_speech,"BeginChapter2"),
     ("BeginChapter2",1):(change_room, "titandeck", "door"),
     ("BeginChapter2",2):(begin_speech,"Tough"),
@@ -149,7 +145,7 @@ ACTIONS = {
     ("DLady4",2):(begin_speech,"DLady6"),
     ("DLady4",3):(begin_speech,"DLady7"),
     ("DLady7",1):(add_prop,("CultKey","key",(8.2,9.7,0.7),90,"A key.",None),False),
-    ("CultKey","click"):(take_object,"CultKey","cult key","You subtly pocket the key to the cultists room."),
+    ("CultKey","click"):(take_object,"CultKey","cult key","You casually pocket the key to the cultists room."),
 
     ("CultBedside", "click"):(begin_speech,"BedsideOpt"),
     ("BedsideOpt",1):(add_prop, ("Artefact","artefact",(6.7,3,0.55),90,"This is the artefact.",None),True),
@@ -233,7 +229,7 @@ SPEECH = {
         " references to one particular ancient cult with disturbing beliefs.\n"
         "Recently you received a letter from an old friend Martin DuPont, which leads you to believe the cult"
         " are active on the caribbean island of Martinique, so you go to see what they are up to.",
-        ["Begin"]),
+        ["Begin","Ch2"]),
     "EndChapter1":(
         "A huge cloud of glowing smoke rushes down from Mont Pelee, burning and sweeping aside everything in its path.\n"
         "Before you die, you have time to wonder what the cultists would have been able to do with the artefact"
