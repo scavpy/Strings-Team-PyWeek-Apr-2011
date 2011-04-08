@@ -7,7 +7,7 @@ from tdgl.gl import *
 from tdgl.viewpoint import OrthoView, SceneView
 from tdgl.panel import LabelPanel
 
-from rooms import Room
+from rooms import Room, ImagePanel
 import story
 
 from math import atan2,degrees
@@ -211,18 +211,33 @@ class GameState(State):
         
     def open_speech(self,conv,text,options):
         self.speaking = True
-        b = LabelPanel("talktext", text, style = bubble_style, _text_width=800, _pos=(512,384 + 20 * len(options),0.05))
+        b = LabelPanel("talktext", text, style = bubble_style, _text_width=800,
+                       _pos=(512,384 + 20 * len(options),0.05))
         self["speech"].append(b)
+        b.prepare()
         if options:
             self.options = (conv,options)
             for n,o in enumerate(options):
-                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800, _pos=(512,220-n*55,0.05))
+                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800,
+                               _pos=(512,220-n*55,0.05))
                 self["speech"].append(p)
 
+    def show_picture(self,conv,image,options,size=(512,512)):
+        self.speaking = True
+        b = ImagePanel("talktext", image, _size=size,
+                       _pos=(512, 384 + 20* len(options), 0))
+        self["speech"].append(b)
+        b.prepare()
+        if options:
+            self.options = (conv,options)
+            for n,o in enumerate(options):
+                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800,
+                               _pos=(512,220-n*55,0.05))
+                self["speech"].append(p)
 
     def close_speech(self,choice=None):
         self.speaking = False
-        self["speech"].contents = []
+        self["speech"].clear()
         if choice:
             c,o = self.options
             self.options = None

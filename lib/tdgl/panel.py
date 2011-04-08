@@ -13,7 +13,7 @@ Released under the terms of the GNU General Public License v3 or later
 """
 from __future__ import division
 
-from pyglet import image, text
+from pyglet import image, text, resource
 
 from tdgl.gl import *
 from tdgl import part, picking
@@ -60,7 +60,8 @@ class Panel(part.ScalePart):
         tex = getstyle("texture")
         if bg:
             if isinstance(tex,basestring):
-                self.tex = image.load(tex).get_mipmapped_texture()
+                self.tex = resource.texture(tex)
+#                self.tex = image.load(tex).get_mipmapped_texture()
                 self.tex_id = self.tex.id
             elif hasattr(tex,"id"):
                 self.tex = tex

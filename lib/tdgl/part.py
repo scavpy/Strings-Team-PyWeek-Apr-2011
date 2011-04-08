@@ -248,6 +248,11 @@ class Group(Part):
            self.named_parts[name] == delpart):
             del self.named_parts[name]
 
+    def clear(self): #PyWeek12
+        """ remove all contents """
+        self.contents = []
+        self.named_parts.clear()
+
     def __getitem__(self,name):
         """Get a named part from contents of group, or from any group
         within it"""

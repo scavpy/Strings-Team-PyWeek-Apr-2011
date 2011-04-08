@@ -64,6 +64,10 @@ def begin_speech(gamestate,conversation):
     t,o = SPEECH[conversation]
     gamestate.open_speech(conversation,t,o)
 
+def show_image(gamestate, conversation, size=(512,512)):
+    t, o = SPEECH[conversation]
+    gamestate.show_picture(conversation,t,o,_size=size)
+
 def add_prop(gamestate,p,onceonly):
     """ parameters: a tuple of (name,model,pos,angle,text,material) """
     s = p[0]+" spawned"

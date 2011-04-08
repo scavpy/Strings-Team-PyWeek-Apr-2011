@@ -7,7 +7,7 @@ if __name__ == "__main__":
     libdir = os.path.join(here, 'lib')
     sys.path.insert(0, libdir)
 
-    pyglet.resource.path = ["data", "data/models"]
+    pyglet.resource.path = ["data", "data/models", "data/icons"]
     pyglet.resource.reindex()
 
     import lib.__main__

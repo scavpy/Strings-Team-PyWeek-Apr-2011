@@ -1,6 +1,6 @@
 import pyglet
 
-from tdgl import objpart, part, animator
+from tdgl import objpart, part, animator, panel
 
 import data
 
@@ -19,6 +19,22 @@ class PropPart(objpart.ObjPart):
 
     def turn_to(self, angle, ms):
         self.anim.change('angle', angle, ms)
+
+
+class ImagePanel(panel.Panel):
+    _default_style = panel.Panel._default_style.copy()
+    _default_style.update(dict(
+            bg=(1,1,1,1),
+            border=4,
+            bd=(1,1,1,1)))
+    _default_geom = panel.Panel._default_geom.copy()
+    _default_geom.update(dict(size=(512,512)))
+    def __init__(self, name, image, **kw):
+        super(ImagePanel, self).__init__(name, **kw)
+        self.setstyle("texture", image)
+
+    def content_size(self):
+        return self.getgeom("size")
 
 class Room(part.Group):
     def __init__(self,name,fname,**kw):
