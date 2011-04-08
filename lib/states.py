@@ -15,14 +15,14 @@ from math import cos,radians,sin
 MOVESPEED = 600
 
 bubble_style = {
-    "bg":(0.0,0.0,0.0,1.0),
-    "bd":(1.0,1.0,1.0,1.0),
+    "bg":(0.0,0.0,0.0,0.9),
+    "bd":(1.0,1.0,1.0,0.5),
     "border":2,
-    "bg_radius":8,
+    "bg_radius":10,
     "bd_radius":8,
     "bg_round":4,
     "bd_round":4,
-    "bg_margin":(5,5),
+    "bg_margin":(8,8),
     "bd_margin":(5,5),
     }
 
