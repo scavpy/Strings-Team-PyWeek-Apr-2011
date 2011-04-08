@@ -75,6 +75,13 @@ class Player:
         self.speed = 1
         self.move_cam()
 
+    def turn_to_face(self, other, ms):
+        wx,wy,wz = self.pos
+        x,y,z = other.pos
+        theta = round(degrees(atan2(wy - y, wx - x)) / 45) * 45
+        self.look = 0
+        self.turn(int(theta) - self.angle)
+
     def look_up(self):
         self.look = max(self.look-1,-2)
         self.speed = 1

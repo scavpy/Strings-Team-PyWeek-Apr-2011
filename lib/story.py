@@ -12,10 +12,10 @@ from rooms import PropPart
 
 # Action functions
 
-def try_again(gamestate):
+def try_again(gamestate,*events_removed):
     r,g,e = CHECKPOINT
     global EVENTS
-    EVENTS = e
+    EVENTS = e-set(events_removed)
     change_room(gamestate,r,g)
 
 def change_room(gamestate, room, gate):
@@ -49,12 +49,11 @@ def take_artefact(gamestate):
     """ Adds item to inventory and spawns a cultist behind you.
     Removes ability to walk."""
     gp = gamestate.player
-    gp.angle = gp.langle = -90
-    gp.move_cam(gamestate.camera)
     take_object(gamestate,"Artefact","caught stealing","You take the artefact only to hear a slam and a click behind you.")
     add_prop(gamestate,("CultistA","cultist-threaten",(4,6,0),-90,"Cultist","cultist-1900"),True)
     gamestate["Room"].walktiles.remove((4,6))
     gp.watching_me = gamestate["CultistA"]
+    gp.turn_to_face(gamestate["CultistA"],250)
 
 def martin_scare(gamestate):
     gp = gamestate.player
@@ -152,7 +151,7 @@ ACTIONS = {
 
 #---> Chapter intros
     ("Chapter1", "begin"):(begin_speech,"BeginChapter1"),
-    ("BeginChapter1",1):(change_room, "hotelroom1", "begin"),
+    ("BeginChapter1",1):(change_room, "hotelroom2", "door"), #hotelroom1 begin
     ("BeginChapter1",2):(change_room, "Chapter2", "begin"),
     ("Chapter2", "begin"):(begin_speech,"BeginChapter2"),
     ("BeginChapter2",1):(change_room, "titandeck", "begin"),
@@ -207,7 +206,8 @@ ACTIONS = {
     ("CultA1",1):(begin_speech,"CultA4"),
     ("CultA1",2):(begin_speech,"CultA2"),
     ("CultA1",3):(begin_speech,"CultA3"),
-    ("CultA2",1):(chapter_end, (0.5,0,0,1), "GameOver"),
+    ("CultA2",1):(try_again,"caught stealing","Artefact spawned"),
+    ("CultA2",2):(chapter_end, (0.5,0,0,1), "GameOver"),
     ("CultA4",1):(begin_speech,"CultA3"),
     ("CultA4",2):(begin_speech,"CultA2"),
     ("CultA3",1):(begin_speech,"CultA5"),
@@ -278,7 +278,7 @@ ACTIONS = {
 SPEECH = {
 #---> Saint-Pierre
     "CultA1":('"What are you doing? Give me that!"',["Did you kill Martin?","OK","No"]),
-    "CultA2":('"Hah! Fool. You should have stayed away. [He shoots you.]"',["Game Over"]),
+    "CultA2":('"Hah! Fool. You should have stayed away. [He shoots you.]"',["Try again", "Game Over"]),
     "CultA3":('"No? Are you mad? Give me it or I will shoot you!" [What will you do? He seems to be very nervous. The artefact must be precious to him.]',["Destroy the artefact","Get shot"]),
     "CultA4":('"Martin? What does it matter when- No! You don\'t ask me questions! Give me the artefact!"',["No","OK"]),
     "CultA5":('"What have you done!? Oh Gods!\n[He panics. There is a rumbling outside.]"',["What's that noise?"]),
