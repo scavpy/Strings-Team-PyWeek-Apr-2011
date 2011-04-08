@@ -15,14 +15,14 @@ from math import cos,radians,sin
 MOVESPEED = 600
 
 bubble_style = {
-    "bg":(0.0,0.0,0.0,1.0),
-    "bd":(1.0,1.0,1.0,1.0),
+    "bg":(0.0,0.0,0.0,0.9),
+    "bd":(1.0,1.0,1.0,0.5),
     "border":2,
-    "bg_radius":8,
+    "bg_radius":10,
     "bd_radius":8,
     "bg_round":4,
     "bd_round":4,
-    "bg_margin":(5,5),
+    "bg_margin":(8,8),
     "bd_margin":(5,5),
     }
 
@@ -131,8 +131,7 @@ class GameState(State):
         self.append(ov)
         self.append(speechport)
         tpanel = LabelPanel("text", "You go outside" if outdoors else "You enter the room", 
-                            _text_width=1000, _pos=(512,32,0))
-        tpanel.setgeom("text_width", 1000)
+                            _text_width=1000, _pos=(512,48,0))
         ov.append(tpanel)
     
     def key_press(self,sym):
@@ -163,16 +162,13 @@ class GameState(State):
     def open_speech(self,conv,text,options):
         self.speaking = True
         b = LabelPanel("talktext", text, style = bubble_style, _text_width=800, _pos=(512,384,0))
-        b.setgeom("text_width",800)    
         self["speech"].append(b)
         if options:
             self.options = (conv,options)
-            n = 0
-            for o in options:
-                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800, _pos=(512,200-n*40,0))
-                p.setgeom("text_width",800)
+            for n,o in enumerate(options):
+                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800, _pos=(512,200-n*55,0))
                 self["speech"].append(p)
-                n += 1
+
 
     def close_speech(self,choice=None):
         self.speaking = False

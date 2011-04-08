@@ -40,7 +40,7 @@ c0 -- -- w2
 name = Bed
 model = bed
 pos = 5.5,2,0,90
-text = This is the cultists bed. You can't help but notice how evil it looks.
+text = This is the cultists bed. You can't help but notice how evil it looks. And smells.
 /
 
 [object]
@@ -55,7 +55,7 @@ name = OccultBook
 model = book
 material = greenbook
 pos = -0.4,4.3,0.73,30
-text = The contents of this book are horrifying. Dreadful rituals. One involving the artefact. Reading it would surely be supurfluos information however.
+text = The contents of this book are horrifying. Dreadful rituals. One involving the artefact. Reading it would surely be unpleasant and you don't have much time.
 /
 
 
@@ -63,7 +63,7 @@ text = The contents of this book are horrifying. Dreadful rituals. One involving
 name = CultBedside
 model = sidetable
 pos = 6.7,3,0,90
-text = You are almost certain he did not choose to store the artefact in here. It's worth looking at regardless.
+text = You are almost certain he did not choose to store anything important in here. It's worth looking at regardless.
 /
 
 [object]

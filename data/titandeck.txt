@@ -1,4 +1,5 @@
 name = HMS Titanic: Deck
+flags = outdoors
 
 [key]
 f = path:deck
