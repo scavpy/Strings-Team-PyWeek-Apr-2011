@@ -86,6 +86,7 @@ class GameState(State):
         self.start = start
         self.speaking = False
         self.options = None
+        self.quit_after_fade_out = None
         super(GameState,self).__init__(name,**kw)
         story.action_for_object(self, room, "begin")
 
@@ -94,6 +95,14 @@ class GameState(State):
 
     def setup_style(self):
         lighting.setup()
+
+    def step(self, ms):
+        super(GameState, self).step(ms)
+        lighting.step(ms)
+        if self.quit_after_fade_out:
+            if lighting.conditions[GL_LIGHT0 + self.light].finished():
+                self.quit = self.quit_after_fade_out
+                self.quit_after_fade_out = None
 
     def build_parts(self,**kw):
         menus = OrthoView("menus",[], _vport=(0,0,1024,768))
@@ -150,6 +159,8 @@ class GameState(State):
                 self.player.look = max(self.player.look-1,-1)
             elif sym == key.END:
                 self.player.look = min(self.player.look+1,1)
+            elif sym == key.ESCAPE:
+                self.fade_to((1,0,0,0), "Chapter2", "begin")
             self.player.move_cam(self.camera)
         elif self.speaking and self.options:
             s = key.symbol_string(sym).strip("_")
@@ -178,6 +189,11 @@ class GameState(State):
             c,o = self.options
             self.options = None
             story.action_for_object(self,c,choice)
+
+    def fade_to(self, fcolour, room, gate):
+        print fcolour, room, gate
+        self.quit_after_fade_out = room, gate
+        lighting.light_colour(self.light, fcolour, 5000)
 
     def pick(self,label):
         prop,name,piece = label.target
