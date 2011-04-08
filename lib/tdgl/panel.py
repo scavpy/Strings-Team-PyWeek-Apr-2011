@@ -167,9 +167,10 @@ class LabelPanel(Panel):
     _default_style.update(dict(fg=(1,1,1,1),
                                font=None,
                                font_size=16,
-                               text_width=None,
                                italic=False,
                                bold=False))
+    _default_geom = Panel._default_geom.copy()
+    _default_geom.update(dict(text_width=None)) #PyWeek12
     _style_attributes = tuple(_default_style.keys())
 
     def __init__(self,name="",text="",html=False,**kw):
@@ -178,7 +179,8 @@ class LabelPanel(Panel):
         self.html = html
         self.prepare()
     def content_size(self):
-        return self.label.content_width,self.label.content_height
+        width = self.getgeom("text_width",0)
+        return max(self.label.content_width, width), self.label.content_height
     def render_content(self,mode="OPAQUE"):
         self.label.draw()
     def prepare_content(self):
