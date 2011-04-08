@@ -69,5 +69,5 @@ text = Jesus Christ... That's a lot of blood. Martin's blood ... Is that some ki
 name = Martin
 model = martincorpse
 pos = 8,0,0,90
-text = This is ... this was Martin. He's definately dead. There's just ... too much blood.
+text = Martin's Corpse
 /

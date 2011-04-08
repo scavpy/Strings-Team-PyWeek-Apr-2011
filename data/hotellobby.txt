@@ -68,3 +68,11 @@ pos = 12,4,0,180
 text = The door that leads back to the hallway.
 door = Exit to Saint-Pierre,street,hotel
 /
+
+[object]
+name = HotelDeskLady
+model = desklady
+material = desklady
+pos = 8,10,0,-90
+text = Hotel Desk Lady
+/

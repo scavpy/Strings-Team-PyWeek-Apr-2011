@@ -1,6 +1,6 @@
 import pyglet
 
-from pyglet.window import key
+from pyglet.window import *
 
 from tdgl import part, picking, lighting
 from tdgl.gl import *
@@ -13,6 +13,18 @@ import story
 from math import cos,radians,sin
 
 MOVESPEED = 600
+
+bubble_style = {
+    "bg":(0.0,0.0,0.0,1.0),
+    "bd":(1.0,1.0,1.0,1.0),
+    "border":2,
+    "bg_radius":8,
+    "bd_radius":8,
+    "bg_round":4,
+    "bd_round":4,
+    "bg_margin":(5,5),
+    "bd_margin":(5,5),
+    }
 
 class Player:
     def __init__(self,pos,angle,height = 1.2):
@@ -72,6 +84,8 @@ class GameState(State):
         self.light = lighting.claim_light()
         self.room = room
         self.start = start
+        self.speaking = False
+        self.options = None
         super(GameState,self).__init__(name,**kw)
 
     def __del__(self):
@@ -109,9 +123,13 @@ class GameState(State):
                        _vport=(0.0,0.0,1.0,128),
                        _ClearColor=(0.1, 0, 0, 1.0),
                        _left=0, _right=1024, _top=128, _bottom=0)
+        speechport = OrthoView("speech", [],
+                               _ClearColor=None,
+                               _left=0, _right=1024, _top=768, _bottom=0)
         with ov.compile_style():
             glDisable(GL_LIGHTING)
         self.append(ov)
+        self.append(speechport)
         tpanel = LabelPanel("text", "You go outside" if outdoors else "You enter the room", 
                             _text_width=1000, _pos=(512,32,0))
         tpanel.setgeom("text_width", 1000)
@@ -119,29 +137,62 @@ class GameState(State):
     
     def key_press(self,sym):
         wt = self["Room"].walktiles
-        if sym == key.UP:
-            self.player.walk(-2,wt)
-        elif sym == key.DOWN:
-            self.player.walk(2,wt)
-        elif sym == key.RIGHT:
-            self.player.turn(-45)
-        elif sym == key.LEFT:
-            self.player.turn(45)
-        elif sym == key.HOME:
-            self.player.look = max(self.player.look-1,-1)
-        elif sym == key.END:
-            self.player.look = min(self.player.look+1,1)
-        self.player.move_cam(self.camera)
+        if not self.speaking:
+            if sym == key.UP:
+                self.player.walk(-2,wt)
+            elif sym == key.DOWN:
+                self.player.walk(2,wt)
+            elif sym == key.RIGHT:
+                self.player.turn(-45)
+            elif sym == key.LEFT:
+                self.player.turn(45)
+            elif sym == key.HOME:
+                self.player.look = max(self.player.look-1,-1)
+            elif sym == key.END:
+                self.player.look = min(self.player.look+1,1)
+            self.player.move_cam(self.camera)
+        elif self.speaking and self.options:
+            s = key.symbol_string(sym).strip("_")
+            try:
+                n = int(s)
+            except ValueError:
+                return
+            if n <= len(self.options[1]):
+                self.close_speech(choice=n)
         
+    def open_speech(self,conv,text,options):
+        self.speaking = True
+        b = LabelPanel("talktext", text, style = bubble_style, _text_width=800, _pos=(512,384,0))
+        b.setgeom("text_width",800)    
+        self["speech"].append(b)
+        if options:
+            self.options = (conv,options)
+            n = 0
+            for o in options:
+                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800, _pos=(512,200-n*40,0))
+                p.setgeom("text_width",800)
+                self["speech"].append(p)
+                n += 1
+
+    def close_speech(self,choice=None):
+        self.speaking = False
+        self["speech"].contents = []
+        if choice:
+            c,o = self.options
+            self.options = None
+            story.action_for_object(self,c,choice)
 
     def pick(self,label):
         prop,name,piece = label.target
         tpan = self["text"]
         if name != "":
             obj = self[name]
-            tpan.text = obj.text 
-            tpan.prepare()
-            story.action_for_object(self, name, "click")
+            if not story.action_for_object(self, name, "click"):
+                tpan.text = obj.text 
+                tpan.prepare()
         
     def click(self,x,y):
-        self.pick_at(x,y)
+        if not self.speaking:
+            self.pick_at(x,y)
+        elif self.speaking and not self.options:
+            self.close_speech()

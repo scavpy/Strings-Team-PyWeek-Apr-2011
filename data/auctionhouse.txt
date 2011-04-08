@@ -104,3 +104,10 @@ model=benches
 pos = 8,4,0,180
 text = The bidders would sit here if there was an auction going on. Turns out there isn't.
 /
+[object]
+name=Auctioneer
+model=man
+material=auctioneer
+pos = 6,2,0,90
+text = Auctioneer
+/
