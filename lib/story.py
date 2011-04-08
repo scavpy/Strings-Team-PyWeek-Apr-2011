@@ -126,6 +126,10 @@ ACTIONS = {
     ("ArkR3to1", "click"):(change_room, "arkroom1", "room3"),
     ("ArkR3to2", "click"):(change_room, "arkroom2", "room3"),
 
+#---> Intro
+    ("Chapter1", "begin"):(begin_speech,"BeginChapter1"),
+    ("BeginChapter1",1):(change_room, "hotelroom1", "begin"),
+
 #---> Saint-Pierre events
     ("HotelDeskLady", "click"):(do_ifelse,set(("cultist IDed",)),set(("cult key",)),
                                 ("HotelDeskLady","askcult"),("HotelDeskLady","askmart")),
@@ -212,6 +216,13 @@ SPEECH = {
     "AHartefact":('"Oh hello. Umm, you\'re a little early for the auction..."',["Yes I know. Can you tell what this item is?"]),
     "AHartefact2":('"Umm, that\'s umm... well no I\'m not sure. You could try, er, asking the gentleman who purchased it yesterday. He umm, seemed quite determined to get his hands on it."',["And what gentleman was this?"]),
     "AHartefact3":('"Oo, um, let me, er, see I... I never caught his name. All I remember is that he wore a brown shirt and had a rather large moustache. I think he stays at the umm, Santa Maria hotel."',["Thank you, you've been most UMM-helpful..."]),
+ 
+    "BeginChapter1":(
+        "You have spent many years investigating supernatural phenomena (without success). But you keep finding"
+        " references to one particular ancient cult with disturbing beliefs.\n"
+        "Recently you received a letter from an old friend Martin DuPont, which leads you to believe the cult"
+        " are active on the caribbean island of Martinique, so you go to see what they are up to.",
+        ["Begin"]),
     }
 def save_story(filename=".9nm"):
     """ save story state in a file """

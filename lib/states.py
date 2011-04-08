@@ -80,13 +80,14 @@ class State(part.Group):
 
 
 class GameState(State):
-    def __init__(self,name="",room="hotelroom1",start="begin",**kw):
+    def __init__(self,name="",room="Chapter1",start="begin",**kw):
         self.light = lighting.claim_light()
         self.room = room
         self.start = start
         self.speaking = False
         self.options = None
         super(GameState,self).__init__(name,**kw)
+        story.action_for_object(self, room, "begin")
 
     def __del__(self):
         lighting.release_light(self.light)
@@ -130,7 +131,7 @@ class GameState(State):
             glDisable(GL_LIGHTING)
         self.append(ov)
         self.append(speechport)
-        tpanel = LabelPanel("text", "You go outside" if outdoors else "You enter the room", 
+        tpanel = LabelPanel("text", hroom.name, 
                             _text_width=1000, _pos=(512,48,0))
         ov.append(tpanel)
     
