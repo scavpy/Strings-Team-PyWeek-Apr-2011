@@ -1,6 +1,6 @@
 import pyglet
 
-from tdgl import objpart, part
+from tdgl import objpart, part, animator
 
 import data
 
@@ -10,6 +10,15 @@ class PropPart(objpart.ObjPart):
         "obj-filename":None,
         "mat-filename":None,
         }
+    def __init__(self, name='', **kw):
+        super(PropPart, self).__init__(name, **kw)
+        self.anim = animator.Mutator(self._geom)
+
+    def step(self, ms):
+        self.anim.step(ms)
+
+    def turn_to(self, angle, ms):
+        self.anim.change('angle', angle, ms)
 
 class Room(part.Group):
     def __init__(self,name,fname,**kw):

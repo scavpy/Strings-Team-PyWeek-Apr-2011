@@ -30,7 +30,10 @@ def do_ifelse(gamestate, true_conditions, false_conditions, win_action, fail_act
     else:
         o,a = fail_action
     action_for_object(gamestate,o,a)
-        
+
+def turn_actor(gamestate, name, angle, ms=1000):
+    actor = gamestate[name]
+    actor.turn_to(angle, ms)
 
 def take_artefact(gamestate):
     """ Adds item to inventory and spawns a cultist behind you.
@@ -86,9 +89,11 @@ ACTIONS = {
 # ---> Doors
     ("SPRoomDoor", "click"):(change_room, "hotelhall", "yourroom"),
     ("SPCultDoor", "click"):(key_check, "caught stealing",
-                             "hotelhall", "cultroom", False,"You can't leave. The cultist is blocking the door."),
+                             "hotelhall", "cultroom", False,
+                             "You can't leave. The cultist is blocking the door."),
     ("SPHRoomDoor", "click"):(change_room, "hotelroom1", "door"),
-    ("SPHCultDoor", "click"):(key_check, "cult key", "hotelroom2", "door",True,"The door is locked. You'll need the key."),
+    ("SPHCultDoor", "click"):(key_check, "cult key", "hotelroom2", "door",True,
+                              "The door is locked. You'll need the key."),
     ("SPHLobbyDoor", "click"):(change_room, "hotellobby", "hallway"),
     ("SPHallDoor", "click"):(change_room, "hotelhall", "lobby"),
     ("SPHRightDoor", "click"):(change_room, "street", "hotel"),
@@ -144,8 +149,11 @@ ACTIONS = {
     ("DLady4",1):(begin_speech,"DLady5"),
     ("DLady4",2):(begin_speech,"DLady6"),
     ("DLady4",3):(begin_speech,"DLady7"),
-    ("DLady7",1):(add_prop,("CultKey","key",(8.2,9.7,0.7),90,"A key.",None),False),
-    ("CultKey","click"):(take_object,"CultKey","cult key","You casually pocket the key to the cultists room."),
+    ("DLady7",1):[
+        (add_prop,("CultKey","key",(8.2,9.7,0.7),90,"A key.",None),False),
+        (turn_actor, "HotelDeskLady", 90)],
+    ("CultKey","click"):(take_object,"CultKey","cult key",
+                         "You casually pocket the key to the cultists room."),
 
     ("CultBedside", "click"):(begin_speech,"BedsideOpt"),
     ("BedsideOpt",1):(add_prop, ("Artefact","artefact",(6.7,3,0.55),90,"This is the artefact.",None),True),
@@ -164,7 +172,8 @@ ACTIONS = {
     ("MartinExamine",1):(begin_speech,"MartinExamine2"),
     ("MartinExamine2",1):(cause_event,"artefact known"),
 
-    ("Auctioneer","click"):(do_ifelse,set(("artefact known",)),set(),("Auctioneer","artefact"),("Auctioneer","smalltalk")),
+    ("Auctioneer","click"):(do_ifelse,set(("artefact known",)),set(),
+                            ("Auctioneer","artefact"),("Auctioneer","smalltalk")),
     ("Auctioneer","smalltalk"):(begin_speech,"AHsmalltalk"),
     ("Auctioneer","artefact"):(begin_speech,"AHartefact"),
 
@@ -198,16 +207,19 @@ SPEECH = {
     "CultA4":('"Martin? What does it matter when- No! You don\'t ask me questions! Give me the artefact!"',["No","OK"]),
     "CultA5":('"What have you done!? Oh Gods!\n[He panics. There is a rumbling outside.]"',["What's that noise?"]),
 
-    "DLady1":('"Hello, how may I help you?"',["Do you know where M. Martin DuPont lives?","Nothing, thank you."]),
+    "DLady1":('"Hello, how may I help you?"',
+              ["Do you know where M. Martin DuPont lives?","Nothing, thank you."]),
     "DLady2":('"Alright, good day sir."',[]),
-    "DLady3":('"Oh yes, M. DuPont. He lives in the white house on the other side of the road."',["Thank you."]),
+    "DLady3":('"Oh yes, M. DuPont. He lives in the white house on the other side of the road."',
+              ["Thank you."]),
     "DLady4":('"Hello, how may I help you?"',
               ["A man with a brown shirt and a large moustache stays here. Can you tell me his room number?",
                "I need to see the man with the large moustache; is he in his room?",
                "I have a message for the man in the brown shirt; can you deliver it for me?"]),
     "DLady5":('"I\'m sorry sir, I\'m afraid I cannot give out room numbers."',["I see ..."]),
     "DLady6":('"I\'m afraid not sir. You could try him again later."',["I see ..."]),
-    "DLady7":('"Certainly sir! Now let\'s see, which was his room?" [She examines the number on a key] "Ah yes. Your message will be delivered sir.',["Thank you very much madam."]),
+    "DLady7":('"Certainly sir! Now let\'s see, which was his room?" [She examines the number on a key] "Ah yes. Your message will be delivered sir.',
+              ["Thank you very much madam."]),
 
     "BedsideOpt":("This is the cultists bedside table. You highly doubt anything is inside but maybe it\'s worth checking.",["Open it.","Attempt and succeed to fail to open it."]),
     "MartinOpt":("Oh God ... Martin... What will you do?",["Check for a pulse","Check wounds","Remove the head in case of zombie plague","Look ... behind ... you"]),
@@ -270,12 +282,12 @@ def action_for_object(gamestate, objectID, action):
     clear items (drops everything from the item bar)
     
     """
-    actiontuple = ACTIONS.get((objectID, action))
-    if actiontuple:
-        fn = actiontuple[0]
-        args = actiontuple[1:]
-        fn(gamestate, *args)
-        return True
-    else:
-        return False
-
+    actions = ACTIONS.get((objectID, action))
+    if actions:
+        if type(actions) is tuple:
+            actions = [actions]
+        for actiontuple in actions:
+            fn = actiontuple[0]
+            args = actiontuple[1:]
+            fn(gamestate, *args)
+    return bool(actions)
