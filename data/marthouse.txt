@@ -51,7 +51,7 @@ name = Curtains
 model = curtains
 material = blackcurtains
 pos = 2,10,0,-90
-text = More blackout curtains. They look new. You're beginning to feel left out.
+text = Blackout curtains. They look new. Much nicer than the ones in your hotel room.
 /
 [object]
 name = Table

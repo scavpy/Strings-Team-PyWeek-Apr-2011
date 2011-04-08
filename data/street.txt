@@ -59,7 +59,7 @@ text = The Santa-Maria hotel. You speculate as to whether or not it is made of c
 name=Skyball
 model=skyball
 pos = 0,0,0,0
-text = This is the sky. There is little to no chance of it being filled with pyroclastic dust today.
+text = The beautiful sky and scenery of this tropical island is best left to the imagination.
 /
 
 [object]
@@ -110,7 +110,7 @@ text = This is someone's house. It is not your house. Do not go in their house.
 name=House2
 model=house
 pos = 17,4,0,0
-text = This is someone else's house. You were warned the first time.
+text = This is someone else's house. Nobody you know.
 /
 
 [object]

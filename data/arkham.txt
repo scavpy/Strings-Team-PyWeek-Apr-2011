@@ -1,4 +1,5 @@
 name = Streets of Arkham
+flags = outdoors
 
 [key]
 P = path
