@@ -131,7 +131,7 @@ class GameState(State):
         self.append(ov)
         self.append(speechport)
         tpanel = LabelPanel("text", "You go outside" if outdoors else "You enter the room", 
-                            _text_width=1000, _pos=(512,64,0))
+                            _text_width=1000, _pos=(512,48,0))
         ov.append(tpanel)
     
     def key_press(self,sym):
@@ -165,11 +165,10 @@ class GameState(State):
         self["speech"].append(b)
         if options:
             self.options = (conv,options)
-            n = 0
-            for o in options:
-                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800, _pos=(512,200-n*40,0))
+            for n,o in enumerate(options):
+                p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800, _pos=(512,200-n*55,0))
                 self["speech"].append(p)
-                n += 1
+
 
     def close_speech(self,choice=None):
         self.speaking = False
