@@ -127,7 +127,8 @@ ACTIONS = {
     ("ArkR3to2", "click"):(change_room, "arkroom2", "room3"),
 
 #---> Saint-Pierre events
-    ("HotelDeskLady", "click"):(do_ifelse,set(("cultist IDed",)),set(("cult key",)),("HotelDeskLady","askcult"),("HotelDeskLady","askmart")),
+    ("HotelDeskLady", "click"):(do_ifelse,set(("cultist IDed",)),set(("cult key",)),
+                                ("HotelDeskLady","askcult"),("HotelDeskLady","askmart")),
     ("HotelDeskLady", "askmart"):(begin_speech,"DLady1"),
     ("HotelDeskLady", "askcult"):(begin_speech,"DLady4"),
     ("DLady1",1):(begin_speech,"DLady3"),
@@ -182,13 +183,13 @@ SPEECH = {
 #---> Saint-Pierre
     "CultA1":('"What are you doing? Give me that!"',["Did you kill Martin?","OK","No"]),
     "CultA2":('"Hah! Fool. You should have stayed away. [Shot dead]"',[]),
-    "CultA3":('"No? Are you mad? Give me it or I will shoot you!" [What will you do? He seems to be walking on eggshells here. The artefact must be precious to him.]',["Destroy the artefact","Get shot"]),
+    "CultA3":('"No? Are you mad? Give me it or I will shoot you!" [What will you do? He seems to be very nervous. The artefact must be precious to him.]',["Destroy the artefact","Get shot"]),
     "CultA4":('"Martin? What does it matter when- No! You don\'t ask me questions! Give me the artefact!"',["No","OK"]),
     "CultA5":('"What have you done!? Oh Gods! [He panicks. You have no clue. Mount Pelee erupts. You get a TKO by volcano but still die. On to the Titanic]"',[]),
 
-    "DLady1":('"Hello, how may I help you?"',["Do you know where a 'Martin' lives?","Nothing, thank you."]),
+    "DLady1":('"Hello, how may I help you?"',["Do you know where M. Martin DuPont lives?","Nothing, thank you."]),
     "DLady2":('"Alright, good day sir."',[]),
-    "DLady3":('"Oh yes, Martin. He lives in the white house on the other side of the road."',["Thank you."]),
+    "DLady3":('"Oh yes, M. DuPont. He lives in the white house on the other side of the road."',["Thank you."]),
     "DLady4":('"Hello, how may I help you?"',
               ["A man with a brown shirt and a large moustache stays here. Can you tell me his room number?",
                "I need to see the man with the large moustache; is he in his room?",
@@ -205,7 +206,7 @@ SPEECH = {
     "MartinExamine2":("...is a brochure for an auction at the auction house next door. One of the items appears to be the artefact in the occult text. Unfortunately the auction was yesterday. Someone has this in their possession and you need to find them before they leave Saint-Pierre.",["Go and investigate"]),
     "MartinOpt3":("Certainly not! You couldn't bear to. Besides, the cliche doesn't exist yet, it's 1902.",["Well then..."]),
 
-    "AHsmalltalk":('"Oh hello... Umm, you\'re a little early for the auction..."',["Sorry. I just wanted to ask if you know a Martin.","Oh sorry... Umm, I'd best be off. "]),
+    "AHsmalltalk":('"Oh hello... Umm, you\'re a little early for the auction..."',["Sorry. I just wanted to ask if you know a Martin DuPont?","Oh sorry... Umm, I'd best be off. "]),
     "AHmartin":('"Martin? Umm, yes I think he lives next door in the uh, white house."',["Thank you. Goodbye.","Does he often come here?"]),
     "AHoften":('"Often? Er, no not really. He was in here umm, yesterday though. He only bid on one item and umm, he was outbid by quite a large umm, summ."',["I see. Well thank you. Goodbye."]),
     "AHartefact":('"Oh hello. Umm, you\'re a little early for the auction..."',["Yes I know. Can you tell what this item is?"]),
