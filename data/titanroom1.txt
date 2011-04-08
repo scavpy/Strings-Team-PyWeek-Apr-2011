@@ -42,6 +42,26 @@ text = Return to Hallway
 [object]
 name = Bed
 model = bed
-pos = 1,0,0,0
+pos = 1,0.4,0,0
 text = Your own bed. It was most comfortable as you paid a ridiculous sum for it.
+/
+[object]
+name = Table
+model = table
+pos = 6.4,2,0,90
+text = A table upon which you are completely 
+/
+
+[object]
+name = OccultBook
+model = book
+pos = 6.4,2,0.73,30
+text = This book doesn't matter. Your father's notes are in the other one.
+/
+[object]
+name = NoteBook
+model = book
+material = greenbook
+pos = 6.4,2,0.78,-30
+text = Book.
 /

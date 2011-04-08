@@ -40,8 +40,21 @@ pos = 4,6,0,-90
 text = Return to Hallway
 /
 [object]
-name = Bed
+name = DrunkBed
 model = bed
-pos = 1,0,0,0
-text = The cultists bed. He's had far too much to drunk. To drank. To ... drink.
+pos = 1,0.4,0,0
+text = The cultist's bed. He's had far too much to drunk. To drank. To ... drink.
+/
+[object]
+name = Table
+model = table
+pos = 6.4,2,0,90
+text = A table
+/
+
+[object]
+name = Suitcase1
+model = suitcase
+pos = 6.4,2,0.74,30
+text = Suitcase
 /

@@ -1,6 +1,7 @@
 import pyglet
 
 from tdgl import objpart, part, animator, panel
+from math import atan2, degrees
 
 import data
 
@@ -17,16 +18,20 @@ class PropPart(objpart.ObjPart):
     def step(self, ms):
         self.anim.step(ms)
 
-    def turn_to(self, angle, ms):
+    def turn_to_angle(self, angle, ms):
         self.anim.change('angle', angle, ms)
 
+    def turn_to_face(self, other, ms):
+        wx,wy,wz = self.pos
+        x,y,z = other.pos
+        theta = atan2(y - wy, x - wx)
+        self.turn_to_angle(degrees(theta), ms)
 
 class ImagePanel(panel.Panel):
     _default_style = panel.Panel._default_style.copy()
     _default_style.update(dict(
             bg=(1,1,1,1),
-            border=4,
-            bd=(1,1,1,1)))
+            border=0, bd=None))
     _default_geom = panel.Panel._default_geom.copy()
     _default_geom.update(dict(size=(512,512)))
     def __init__(self, name, image, **kw):

@@ -10,7 +10,7 @@ W = hotelroom-wall:titanroom-wall
 
 [gates]
 bar = 2,0,-90
-yourroom = 2,6,0
+yourroom = 2,6,180
 cultroom = 2,10,180
 /
 

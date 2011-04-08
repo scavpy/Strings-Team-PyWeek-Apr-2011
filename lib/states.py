@@ -50,11 +50,9 @@ class Player:
         cam = self.camera
         x,y,z = self.pos
         cam.look_at((x, y, z + self.height),ms)
-        cam.look_from_spherical(self.look*45,self.angle,1,ms)
+        cam.look_from_spherical(self.look*20,self.angle,1,ms)
         if self.watching_me:
-            wx,wy,wz = self.watching_me.pos
-            theta = atan2(y - wy, x - wx)
-            self.watching_me.angle = degrees(theta)
+            self.watching_me.turn_to_face(self, 500)
 
     def walk(self,mag,walkable_tiles):
         if not self.stuck:
@@ -71,19 +69,19 @@ class Player:
     def turn(self,mag):
         if self.angle in (360, -360):
             self.angle = 0
-            self.camera.look_from_spherical(self.look*45, 0,1,0)
+            self.camera.look_from_spherical(self.look*20, 0,1,0)
             self.camera.step(1)
         self.angle = self.angle + mag
         self.speed = 1
         self.move_cam()
 
     def look_up(self):
-        self.look = max(self.look-1,-1)
+        self.look = max(self.look-1,-2)
         self.speed = 1
         self.move_cam()
 
     def look_down(self):
-        self.look = min(self.look+1, 1)
+        self.look = min(self.look+1, 2)
         self.speed = 1
         self.move_cam()
 
@@ -147,9 +145,9 @@ class GameState(State):
                 self.quit_after_fade_out = None
 
     def build_parts(self,**kw):
-        menus = OrthoView("menus",[], _vport=(0,0,1024,768))
-        with menus.compile_style():
-            glDisable(GL_LIGHTING)
+#        menus = OrthoView("menus",[], _vport=(0,0,1024,768))
+#        with menus.compile_style():
+#            glDisable(GL_LIGHTING)
         sv = SceneView("scene",[],
                        _vport=(0.0, 128, 1.0, 1.0), 
                        _ClearColor=(0.3, 0.3, 0.3, 1.0),
@@ -178,6 +176,8 @@ class GameState(State):
                                _ClearColor=None,
                                _left=0, _right=1024, _top=768, _bottom=0)
         with ov.compile_style():
+            glDisable(GL_LIGHTING)
+        with speechport.compile_style():
             glDisable(GL_LIGHTING)
         self.append(ov)
         self.append(speechport)
@@ -212,27 +212,27 @@ class GameState(State):
     def open_speech(self,conv,text,options):
         self.speaking = True
         b = LabelPanel("talktext", text, style = bubble_style, _text_width=800,
-                       _pos=(512,384 + 20 * len(options),0.05))
+                       _pos=(512,384 + 20 * len(options),0.9))
         self["speech"].append(b)
         b.prepare()
         if options:
             self.options = (conv,options)
             for n,o in enumerate(options):
                 p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800,
-                               _pos=(512,220-n*55,0.05))
+                               _pos=(512,220-n*55,0.8))
                 self["speech"].append(p)
 
     def show_picture(self,conv,image,options,size=(512,512)):
         self.speaking = True
         b = ImagePanel("talktext", image, _size=size,
-                       _pos=(512, 384 + 20* len(options), 0))
+                       _pos=(512, 384 + 20* len(options), 0.9))
         self["speech"].append(b)
         b.prepare()
         if options:
             self.options = (conv,options)
             for n,o in enumerate(options):
                 p = LabelPanel("opt%d"%n,"%d. %s"%(n+1,o),style = bubble_style, _text_width=800,
-                               _pos=(512,220-n*55,0.05))
+                               _pos=(512,220-n*55,0.8))
                 self["speech"].append(p)
 
     def close_speech(self,choice=None):

@@ -1,5 +1,4 @@
 name = HMS Titanic: Deck
-flags = outdoors
 
 [key]
 f = path:deck
@@ -34,14 +33,14 @@ W3 f1 f1 f1 f1 f1 f1 f1 C3 b2
 0 1 1 0 1 1 1 1 1 0
 0 1 1 1 1 1 1 1 1 0
 0 1 1 1 1 1 1 1 0 0
-0 1 1 1 1 0 1 1 1 0
-0 1 1 1 0 1 1 1 1 0
+0 1 1 1 1 1 1 1 1 0
+0 1 1 1 1 1 1 1 1 0
 0 1 1 1 1 1 1 1 1 0
 0 1 1 1 1 1 1 1 0 0
 /
 
 [object]
-name = CabinDoor
+name = CabinDoorLater
 model = steeldoor
 pos = 16,18,0,180
 text = Door to Bar.
@@ -130,23 +129,10 @@ pos = 16,10,0,90
 text = Sailor
 /
 [object]
-name = Lady
-model = desklady
-material = lady
-pos = 8,14,0,180
-text = Lady
-/
-[object]
-name = Man
-model = man
-pos = 10,12,0,0
-text = Man
-/
-[object]
-name = SuspiciousMan
+name = SuspiciousMan2
 model = man
 material = cult-2
 pos = 2,2,0,90
-text = Suspicious man
+text = A dangerous villain if ever I saw one
 /
 
