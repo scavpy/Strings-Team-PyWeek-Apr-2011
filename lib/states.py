@@ -67,9 +67,9 @@ class Player:
         self.move_cam()
 
     def turn(self,mag):
-        if self.angle in (360, -360):
-            self.angle = 0
-            self.camera.look_from_spherical(self.look*20, 0,1,0)
+        if abs(self.angle + mag) > 360:
+            self.angle = self.angle + (360 if self.angle < 0 else -360)
+            self.camera.look_from_spherical(self.look*20, self.angle ,1,0)
             self.camera.step(1)
         self.angle = self.angle + mag
         self.speed = 1
