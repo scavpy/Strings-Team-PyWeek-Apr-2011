@@ -1,0 +1,16 @@
+# Blender3D v249 OBJ File: blood-trail.blend
+# www.blender3d.org
+mtllib blood-trail.mtl
+o Plane
+v 1.000000 1.000000 0.010000
+v 1.000000 -1.000000 0.010000
+v -1.000000 -1.000000 0.010000
+v -1.000000 1.000000 0.010000
+vt -0.000000 1.000000
+vt 0.000000 0.000000
+vt 1.000000 0.000000
+vt 1.000000 1.000000
+vn 0.000000 -0.000000 1.000000
+usemtl None_bloodtrail.png
+s off
+f 1/1/1 4/2/1 3/3/1 2/4/1

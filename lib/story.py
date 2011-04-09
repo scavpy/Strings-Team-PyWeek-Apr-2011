@@ -69,6 +69,9 @@ def take_object(gamestate,item,event,text):
     EVENTS.add(event)
     gamestate.footer_text(text)
 
+def foot_text(gamestate,text):
+    gamestate.footer_text(text)
+
 def begin_speech(gamestate,conversation):
     t,o = SPEECH[conversation]
     gamestate.open_speech(conversation,t,o)
@@ -93,6 +96,12 @@ def add_prop(gamestate,p,onceonly):
 
 def cause_event(gamestate,event):
     EVENTS.add(event)
+
+def move_2ab(gamestate,room,gate):
+    c = "room2 first"
+    if c not in EVENTS:
+        EVENTS.add(("room2 first",))
+    change_room(gamestate,room,gate)
 
 # All story actions in the whole game
 
@@ -140,22 +149,42 @@ ACTIONS = {
     ("TTLeaveR1", "click"):(change_room, "titanhall", "yourroom"),
     ("TTLeaveR2", "click"):(key_check,["drunk bedded","go time"], "titanhall", "cultroom",True,
                             "You are not going to carry him around the whole ship. Just put him on the bed and rummage through his stuff."),
-    ("ArkHDoor", "click"):(change_room, "arkroom1", "street"),
-    ("ArkR1to2", "click"):(change_room, "arkroom2", "room1"),
-    ("ArkR1to3", "click"):(change_room, "arkroom3", "room1"),
-    ("ArkHtoStreet", "click"):(change_room, "arkham", "door"),
+    ("ArkHDoor", "click"):(key_check,["lawyer in"], "arkroom1", "street",True,
+                           "You should speak to Reginald, your lawyer, first."),
+    ("ArkR1to2", "click"):[(change_room, "arkroom2", "room1"),(cause_event,"door lock")],
+    ("ArkR1to3", "click"):(key_check, ["door lock"], "arkroom3", "room1",True,
+                           "Reg is in the way. You should check out the other room."),
+    ("ArkHtoStreet", "click"):(key_check, ["door lock"], "arkham", "door",False,
+                               "It's locked. Strange... You certainly didn't lock it."),
     ("ArkR2to1", "click"):(change_room, "arkroom1", "room2"),
     ("ArkR2to3", "click"):(change_room, "arkroom3", "room2"),
     ("ArkR3to1", "click"):(change_room, "arkroom1", "room3"),
     ("ArkR3to2", "click"):(change_room, "arkroom2", "room3"),
 
+    ("ArkR1ato2a", "click"):(move_2ab, "arkroom2a", "room1"),
+    ("ArkR1ato3a", "click"):(change_room, "arkroom3a", "room1"),
+    ("ArkR2ato1a", "click"):(change_room, "arkroom1a", "room2"),
+    ("ArkR2ato3a", "click"):(change_room, "arkroom3a", "room2"),
+    ("ArkR3ato1a", "click"):(change_room, "arkroom1a", "room3"),
+    ("ArkR3ato2a", "click"):(move_2ab, "arkroom2a", "room3"),
+
+    ("ArkR1bto2b", "click"):(move_2ab, "arkroom2b", "room1"),
+    ("ArkR1bto3b", "click"):(change_room, "arkroom3b", "room1"),
+    ("ArkR2bto1b", "click"):(change_room, "arkroom1b", "room2"),
+    ("ArkR2bto3b", "click"):(change_room, "arkroom3b", "room2"),
+    ("ArkR3bto1b", "click"):(change_room, "arkroom1b", "room3"),
+    ("ArkR3bto2b", "click"):(move_2ab, "arkroom2b", "room3"),
+
 #---> Chapter intros
     ("Chapter1", "begin"):(begin_speech,"BeginChapter1"),
-    ("BeginChapter1",1):(change_room, "hotelroom2", "door"), #hotelroom1 begin
+    ("BeginChapter1",1):(change_room, "hotelroom1", "begin"),
     ("BeginChapter1",2):(change_room, "Chapter2", "begin"),
     ("Chapter2", "begin"):(begin_speech,"BeginChapter2"),
     ("BeginChapter2",1):(change_room, "titandeck", "begin"),
     ("BeginChapter2",2):(begin_speech,"Tough"),
+    ("BeginChapter2",3):(change_room,"Chapter3","begin"),
+    ("Chapter3", "begin"):(begin_speech,"BeginChapter3"),
+    ("BeginChapter3",1):(change_room,"arkham","begin"),
     ("Tough",1):(change_room, "titandeck", "door"),
 
 #---> Saint-Pierre events
@@ -272,7 +301,52 @@ ACTIONS = {
     ("FailChapter2",1):(try_again,),
     ("FailChapter2",2):(chapter_end, (0,0,0,0), "GameOver"),
     ("EndChapter2",1):(chapter_end, (0,0.2,0.1,1), "Chapter3"),
- 
+
+#---> Arkham
+    ("arkham","begin"):(do_ifelse,set(),set(("lawyer in",)),("arkham","AddLawyer"),("DO","NOTHING")),
+    ("arkham","AddLawyer"):(add_prop,("Lawyer","man",(10,20,0),-90,"Reg.D, lawyer","lawyer"),False),
+    ("Lawyer","click"):(do_ifelse,set(("lawyer talked",)),set(),("Lawyer","vanish"),("Lawyer","talk")),
+    ("Lawyer","talk"):(begin_speech,"Lawyer1"),
+    ("Lawyer1",1):[(cause_event,"lawyer talked"),
+                   (turn_actor,"Lawyer",0),],
+    ("Lawyer","vanish"):(take_object,"Lawyer","lawyer in","Reg heads inside the house."),
+    ("arkroom1","begin"):(do_ifelse,set(),set(("door lock",)),("arkroom1","AddLawyer"),("DO","NOTHING")),
+    ("arkroom1","AddLawyer"):(add_prop,("Lawyer2","man",(0,6,0),0,"Reg.D, lawyer","lawyer"),False),
+    ("Lawyer2","click"):(begin_speech,"Lawyer2"),
+    ("arkroom2","begin"):(do_ifelse,set(("wind placed",)),set(("wind stolen",)),("arkroom2","AddWind"),("DO","NOTHING")),
+    ("arkroom2","AddWind"):(add_prop,("WindSumm2","painting",(-0.98,0,-0.4),90,
+                                      "'The Summoning of Wind'. You\'re glad it\'s here to complete the set.",
+                                      "windsummon"),False),
+    ("BloodSumm","click"):(do_ifelse,set(("wind taken",)),set(("wind placed",)),("BloodSumm","put"),("BloodSumm","text")),
+    ("BloodSumm","put"):(begin_speech,"WindPlace"),
+    ("BloodSumm","text"):(begin_speech,"WindWhere"),
+    ("WindPlace",1):[(begin_speech,"WindNice"),(cause_event,"wind placed"),(add_prop,("WindSumm2","painting",
+                                                                                      (-0.98,0,-0.4),90,
+                                      "'The Summoning of Wind'. You\'re glad it\'s here to complete the set.",
+                                      "windsummon"),False)],
+    ("WindNice",1):(begin_speech,"WindCrash"),
+    ("WindCrash",1):[(take_object,"ArkR2to3","dswitch","Something's wrong..."),
+                     (take_object,"ArkR2to1","dswitch","Something's wrong..."),
+                     (add_prop,("ArkR2to1a","door",(10,6,0),180,"Door",None),False),
+                     (add_prop,("ArkR2to3b","door",(2,8,0),-90,"Door",None),False),
+                     ],
+    ("ArkR2to1a","click"):(change_room,"arkroom1a","room2"),
+    ("ArkR2to3b","click"):(change_room,"arkroom3b","room2"),
+    ("arkroom3","begin"):(do_ifelse,set(),set(("lawyer call",)),("arkroom3","AddLawyer"),("DO","NOTHING")),
+    ("arkroom3","AddLawyer"):(add_prop,("Lawyer3","man",(0,4,0),180,"Reg.D, lawyer","lawyer"),False),
+    ("Lawyer3","click"):[(face_player,"Lawyer3"),(begin_speech,"Lawyer3")],
+    ("Lawyer3",1):(begin_speech,"Lawyer4"),
+    ("Lawyer4",1):(take_object,"Lawyer3","lawyer call","He seems in a hurry to use the phone. What was he looking at?"),
+    ("WindSumm1","click"):(begin_speech,"WindOpt"),
+    ("WindOpt",1):(begin_speech,"WindEx"),
+    ("WindOpt",2):(begin_speech,"WindTk"),
+    ("WindEx",1):(begin_speech,"WindTk"),
+    ("WindTk",1):(take_object,"WindSumm1","wind taken",
+                  "You lift the frame from the wall in order to move it into the other room."),
+
+    ("arkroom2a","begin"):(do_ifelse,set(),set(("room2 first",)),("2a","first"),("DO","NOTHING")),
+    ("2a","first"):(foot_text("Whoever or whatever is in here seems to have gone upstairs. And they've taken the Summoning of Wind with them. The door is locked, you are not getting out of here alive. The least you can do is stop any future Summonings from happening.")),
+                   
 }
 
 SPEECH = {
@@ -321,14 +395,15 @@ SPEECH = {
     "EndChapter1":(
         "A huge cloud of glowing smoke rushes down from Mont Pelee, burning and sweeping aside everything in its path.\n"
         "Before you die, you have time to wonder what the cultists would have been able to do with the artefact"
-        " if you hadn't stopped them...", ["End of Chapter 1"]),
+        " if you hadn't stopped them..."
+        "Your mother and son are left alone in Arkham.", ["End of Chapter 1"]),
 
     "BeginChapter2":(
         "After your father died in Martinique, your mother moved back from America to Glasgow. She lived well and"
         " died peacefully leaving you a large inheritance.\n"
         "You decide to return to your old house in Arkham and find out more about your father's life.\n"
         "Taking his old notes and diaries to read on the long sea voyage, you book passage on the maiden voyage of"
-        " the world's greatest ship: The Titanic", ["Begin", "No wait, I can see this isn't going to go well..."]),
+        " the world's greatest ship: The Titanic", ["Begin", "No wait, I can see this isn't going to go well...","Ch. 3"]),
     "Tough":("Tough.\nGet on with it, you've got a world to save.", ["Fine."]),
     "FailChapter2":(
         "You are immediately arrested and thrown in the brig until arrival at New York.\n"
@@ -341,8 +416,15 @@ SPEECH = {
         "The 'anarchists' are arrested and thrown in the brig. Late at night chanting is heard and a horrible scream.\n"
         "The water beside the ship churns and begins to freeze. Something vast moves beneath the ship and tears it open.\n"
         "Although you make it onto a lifeboat, what you see that night breaks you. You are cared for in a mental"
-        " hospital for the remainder of your life.",
+        " hospital for the remainder of your life, never to see your son again.",
         ["End of Chapter 2"]),
+    "BeginChapter3":(
+        "Your father set out on the Titanic when you were only little yet never returned. Unable to articulate who he"
+        " was, he remained in a Massachusets mental hospital for over a decade.\n"
+        "When you finally discover his whereabouts, you take the long trip to visit him. Upon arrival, he speaks"
+        " gibberish about some fantasy cult responsible for the sinking of the Titanic. Unwilling to believe him"
+        " and unable to free him, you decide you can at least finish what he started and visit the old Arkham"
+        " house.\n You decide to bring a lawyer so that you can claim possession of the ancient building.", ["Begin"]),
 
 #---> Titanic
     "S1":('"The weather looks fine. It should be a smooth journey."',[]),
@@ -389,6 +471,22 @@ SPEECH = {
     "SLose":('"Of course sir. I think you may have had a little too much to drink."',[]),
     "SWin":('"Are you sure? Hmm, his tattoo is suspicious. I will alert the Captain and we\'ll search the ship."',
             ["Thank you."]),
+
+#---> Arkham
+    "Lawyer1":('"Well sir, here\'s the place. Shall we head inside and take a look?"',["After you."]),
+    "Lawyer2":('"Here we are then. The sitting room is just through that other door. Let me know when you\'ve finished looking around."',["OK. I will."]),
+    "Lawyer3":('"Oh... Er, hello."',["Hi. Did you find anything interesting?"]),
+    "Lawyer4":('"Oh yes, yes indeed. It\'s all very interesting. Would you excuse me? I need to make a phonecall."',
+["Of couse."]),
+    "WindOpt":('A painting of some kind. Weren\'t there a few like it in the sitting room?',["Examine it","Take it"]),
+    "WindEx":('Labelled \'The Summoning of Wind\'. It depicts a large vortex it seems.',["Take it"]),
+    "WindTk":('It probably belongs with the other two in the sitting room. You should place it right next to the Summoning of Blood.',["Make it so"]),
+
+    "WindPlace":('Yes. You think the Summoning of Wind would look simply adorable next to the Summoning of Blood.',
+                 ["Yes. Oh God yes."]),
+    "WindNice":('You were more right than you could ever have believed possible',["Without question"]),
+    "WindCrash":('You suddenly hear a crash however. It sounds like breaking glass. You also hear an angry shout. Not the investigating type, you decide to get out of here.',["As soon as possible..."]),
+    "WindWhere":('Labelled \'The Summoning of Blood\'. It shows a blackened, twisted figure. It is most disturbing. It almost seems like there should be a third of these paintings. You wonder where it is and if you could return it to its place.',[]),
     }
 def save_story(filename=".9nm"):
     """ save story state in a file """

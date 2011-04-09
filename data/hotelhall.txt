@@ -61,6 +61,12 @@ pos = 0,10,0,0
 text = The door to room number 1. Surely someone significant must stay here.
 door = Entrance to room 1,hotelroom2,door
 /
+[object]
+name = Painting
+model = painting
+pos = 2.98,2,-0.4,-90
+text = A nice little painting of Saint-Pierre. You think it's charming.
+/
 
 [object]
 name = SPHLobbyDoor

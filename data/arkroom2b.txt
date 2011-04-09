@@ -6,6 +6,8 @@ w = hotelroom-wall:greenroom-wall
 W = hotelroom-window:greenroom-window
 D = hotelroom-door:greenroom-door
 f = room-floor:green-floor
+b = blood-trail
+B = blood-corner
 / 
 
 [gates]
@@ -29,6 +31,14 @@ w0 -- -- -- -- D2
 c0 D1 w1 w1 w1 c1
 /
 
+[layer]
+B3 b0 b0 b0 -- --
+b1 -- -- -- -- --
+b1 -- -- -- -- --
+B0 b0 b0 b0 b0 b0
+-- -- -- -- -- --
+/
+
 [walk]
 1 1 1 1 0 0
 1 1 1 1 1 1
@@ -38,43 +48,44 @@ c0 D1 w1 w1 w1 c1
 /
 
 [object]
-name = ArkR2to3
+name = ArkR2bto3b
 model = door
 pos = 2,8,0,-90
 text = This door leads to the study.
 /
 
 [object]
-name = ArkR2to1
+name = ArkR2bto1b
 model = door
 pos = 10,6,0,180
 text = This door leads back to the hallway.
 /
 
 [object]
-name = Fireplace
+name = FireplaceA
 model = fireplace
 pos = 0,4,0,0
 text = A place of fire!
 /
 [object]
-name = FireSumm
+name = FireSummA
 model = painting
 material = firesummon
 pos = -0.98,2,-0.4,90
-text = Labelled: 'The Summoning of Fire'. Aptly named given it's proximity to the fireplace. It has some kind of burning creature on it.
+text = Something's not right.
 /
 [object]
-name = BloodSumm
+name = BloodSummA
 model = painting
 material = bloodsummon
 pos = -0.98,1,-0.4,90
-text = Summoning of Blood
+text = The Summoning of Wind is missing. Whoever's in here must have taken it upstairs with them.
 /
 
 [object]
 name = Staircase
 model = stairs-corner
+material = stairs-blood
 pos = 10,0,0,180
 text = They look worn and dangerous. You should probably stay downstairs for now.
 /

@@ -66,6 +66,13 @@ model = barstool
 pos = 4,9.6,0,0
 text = A comfortable-looking stool. Unfortunately you don't have time for comfort.
 /
+[object]
+name = Barman
+model = man
+material = auctioneer
+pos = 4,12,0,-90
+text = The barman seems exasperated by his company. You decide to leave him alone.
+/
 
 [object]
 name = bar1

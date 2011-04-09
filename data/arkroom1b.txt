@@ -6,6 +6,8 @@ w = hotelroom-wall:greenroom-wall
 W = hotelroom-window:greenroom-window
 D = hotelroom-door:greenroom-door
 f = room-floor:green-floor
+b = blood-trail
+B = blood-corner
 / 
 
 [gates]
@@ -20,6 +22,14 @@ f0 f0 f0
 f0 f0 f0
 f0 f0 f0
 f0 f0 f0
+/
+
+[layer]
+-- b1 --
+b0 B1 --
+-- -- --
+-- -- --
+-- -- --
 /
 
 [layer]
@@ -39,30 +49,30 @@ c0 w1 c1
 /
 
 [object]
-name = ArkR1to2
+name = ArkR1bto2b
 model = door
 pos = 0,2,0,0
 text = This is the door to the sitting room.
 /
 
 [object]
-name = ArkR1to3
+name = ArkR1bto3b
 model = door
 pos = 0,6,0,0
 text = This door leads to the study.
 /
 
 [object]
-name = ArkHtoStreet
+name = ExitDoor
 model = door
 pos = 2,0,0,90
-text = The front door.
+text = The front door. It's locked... You can't get out.
 /
 
 [object]
-name = Curtains
+name = BlackCurtains
 model = curtains
-material = green-curtains
+material = blackcurtains
 pos = 4,6,0,180
-text = The curtains are closed. You understand why; the decor is awful.
+text = Blackout curtains? These weren't here before surely...
 /

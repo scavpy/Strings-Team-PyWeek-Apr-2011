@@ -6,6 +6,8 @@ w = hotelroom-wall:greenroom-wall
 W = hotelroom-window:greenroom-window
 D = hotelroom-door:greenroom-door
 f = room-floor:green-floor
+b = blood-trail
+B = blood-corner
 / 
 
 [gates]
@@ -19,6 +21,14 @@ f0 f0 f0 f0 f0
 f0 f0 f0 f0 f0
 f0 f0 f0 f0 f0
 f0 f0 f0 f0 f0
+/
+
+[layer]
+-- -- b1 -- --
+-- -- B0 B2 --
+-- -- -- B0 b0
+-- -- -- -- --
+-- -- -- -- --
 /
 
 [layer]
@@ -38,22 +48,15 @@ c0 w1 w1 w1 c1
 /
 
 [object]
-name = ArkR3to1
+name = ArkR3ato1a
 model = door
 pos = 8,4,0,180
 text = This door leads back to the hallway.
 /
 
 [object]
-name = ArkR3to2
+name = ArkR3ato2a
 model = door
 pos = 4,0,0,90
 text = This door leads to the sitting room.
 /
-[object]
-name = WindSumm1
-model = painting
-material = windsummon
-pos = -0.98,4,-0.4,90
-/
-
