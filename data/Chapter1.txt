@@ -1,4 +1,4 @@
-name = Chapter 1
+name = Chapter 1 - Saint Pierre, 1902
 
 [gates]
 begin = 0,0,0

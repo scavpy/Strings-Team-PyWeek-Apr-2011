@@ -10,6 +10,7 @@ of story transitions, inventory etc.
 """
 from rooms import PropPart
 
+
 # Action functions
 
 def try_again(gamestate,*events_removed):
@@ -76,7 +77,7 @@ def begin_speech(gamestate,conversation):
     t,o = SPEECH[conversation]
     gamestate.open_speech(conversation,t,o)
 
-def show_image(gamestate, conversation, size=(512,512)):
+def show_image(gamestate, conversation, size=(400,400)):
     t, o = SPEECH[conversation]
     gamestate.show_picture(conversation,t,o,size=size)
 
@@ -345,7 +346,7 @@ ACTIONS = {
                   "You lift the frame from the wall in order to move it into the other room."),
 
     ("arkroom2a","begin"):(do_ifelse,set(),set(("room2 first",)),("2a","first"),("DO","NOTHING")),
-    ("2a","first"):(foot_text("Whoever or whatever is in here seems to have gone upstairs. And they've taken the Summoning of Wind with them. The door is locked, you are not getting out of here alive. The least you can do is stop any future Summonings from happening.")),
+    ("2a","first"):(foot_text,"Whoever or whatever is in here seems to have gone upstairs. And they've taken the Summoning of Wind with them. The door is locked, you are not getting out of here alive. The least you can do is stop any future Summonings from happening."),
                    
 }
 
@@ -401,9 +402,11 @@ SPEECH = {
     "BeginChapter2":(
         "After your father died in Martinique, your mother moved back from America to Glasgow. She lived well and"
         " died peacefully leaving you a large inheritance.\n"
-        "You decide to return to your old house in Arkham and find out more about your father's life.\n"
-        "Taking his old notes and diaries to read on the long sea voyage, you book passage on the maiden voyage of"
-        " the world's greatest ship: The Titanic", ["Begin", "No wait, I can see this isn't going to go well...","Ch. 3"]),
+        "You decide to visit your old house in Arkham and find out more about your father's life. Your wife remains"
+        " at home, being unable to travel in her delicate condition.\n"
+        "Taking your father's old notes and diaries to read on the long sea voyage,"
+        " you book passage on the maiden voyage of the world's greatest ship:\nThe Titanic", 
+        ["Begin", "No wait, I can see this isn't going to go well...","Ch. 3"]),
     "Tough":("Tough.\nGet on with it, you've got a world to save.", ["Fine."]),
     "FailChapter2":(
         "You are immediately arrested and thrown in the brig until arrival at New York.\n"
@@ -413,18 +416,20 @@ SPEECH = {
         "You realise as unholy tentacles reach into your prison cell, you have failed.",
         ["Try Again","Game Over"]),
     "EndChapter2":(
-        "The 'anarchists' are arrested and thrown in the brig. Late at night chanting is heard and a horrible scream.\n"
+        "The 'anarchists' are arrested and thrown in the brig. Late at night you hear drunken chanting"
+        " from the next cabin, then a horrible scream.\n"
         "The water beside the ship churns and begins to freeze. Something vast moves beneath the ship and tears it open.\n"
         "Although you make it onto a lifeboat, what you see that night breaks you. You are cared for in a mental"
-        " hospital for the remainder of your life, never to see your son again.",
+        " hospital for the remainder of your life.",
         ["End of Chapter 2"]),
     "BeginChapter3":(
         "Your father set out on the Titanic when you were only little yet never returned. Unable to articulate who he"
-        " was, he remained in a Massachusets mental hospital for over a decade.\n"
+        " was, he has remained in a Massachusets mental hospital ever since.\n"
         "When you finally discover his whereabouts, you take the long trip to visit him. Upon arrival, he speaks"
-        " gibberish about some fantasy cult responsible for the sinking of the Titanic. Unwilling to believe him"
-        " and unable to free him, you decide you can at least finish what he started and visit the old Arkham"
-        " house.\n You decide to bring a lawyer so that you can claim possession of the ancient building.", ["Begin"]),
+        " gibberish about some fantasy cult responsible for the sinking of the Titanic. Unable to believe him"
+        " or persuade the doctors to release him, you decide you can at least finish what he started and visit"
+        " the old Arkham house.\n"
+        "You decide to engage a lawyer and claim ownership of the ancient building.", ["Begin"]),
 
 #---> Titanic
     "S1":('"The weather looks fine. It should be a smooth journey."',[]),
@@ -483,10 +488,12 @@ SPEECH = {
     "WindTk":('It probably belongs with the other two in the sitting room. You should place it right next to the Summoning of Blood.',["Make it so"]),
 
     "WindPlace":('Yes. You think the Summoning of Wind would look simply adorable next to the Summoning of Blood.',
-                 ["Yes. Oh God yes."]),
-    "WindNice":('You were more right than you could ever have believed possible',["Without question"]),
-    "WindCrash":('You suddenly hear a crash however. It sounds like breaking glass. You also hear an angry shout. Not the investigating type, you decide to get out of here.',["As soon as possible..."]),
-    "WindWhere":('Labelled \'The Summoning of Blood\'. It shows a blackened, twisted figure. It is most disturbing. It almost seems like there should be a third of these paintings. You wonder where it is and if you could return it to its place.',[]),
+                 ["Yes indeed. Most tasteful."]),
+    "WindNice":('You are an interior decorating genius.',["Without question"]),
+    "WindCrash":('You suddenly hear a crash! It sounds like breaking glass. You also hear an angry shout. Not the investigating type, you decide to get out of here.',["As soon as possible..."]),
+    "WindWhere":('Labelled \'The Summoning of Blood\'. It shows a blackened, twisted figure. It is most disturbing.'
+                 ' It almost seems like there should be a set of three such paintings.'
+                 ' You wonder where the other is, if so.',[]),
     }
 def save_story(filename=".9nm"):
     """ save story state in a file """

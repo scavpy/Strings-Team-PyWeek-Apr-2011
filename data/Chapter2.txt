@@ -1,4 +1,4 @@
-name = Chapter 2
+name = Chapter 2 - Mid-Atlantic, 1912
 
 [gates]
 begin = 0,0,0

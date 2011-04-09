@@ -1,4 +1,4 @@
-name = Chapter 3
+name = Chapter 3 - Arkham, Mass. 1938
 
 [gates]
 begin = 0,0,0
