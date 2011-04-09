@@ -8,12 +8,14 @@ from pyglet.window import key
 from tdgl.gl import *
 
 from states import *
+import story
 
 class GameWin(pyglet.window.Window):
     def __init__(self,**kw):
         super(GameWin,self).__init__(**kw)
         pyglet.clock.schedule(self.on_tick)
         self.newstate = None
+        story.chapter_setup(None, 1)
         self.state = GameState(room="Chapter1",start="begin")
 
     def on_tick(self,secs):

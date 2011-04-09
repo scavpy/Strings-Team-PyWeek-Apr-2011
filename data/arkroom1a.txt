@@ -25,9 +25,9 @@ f0 f0 f0
 /
 [layer]
 -- b1 --
--- b1 --
--- b1 --
 b0 B1 --
+-- -- --
+-- -- --
 -- -- --
 /
 
@@ -48,14 +48,14 @@ c0 w1 c1
 /
 
 [object]
-name = ArkR1ato2a
+name = ArkR1to2a
 model = door
 pos = 0,2,0,0
 text = This is the door to the sitting room.
 /
 
 [object]
-name = ArkR1ato3a
+name = ArkR1to3a
 model = door
 pos = 0,6,0,0
 text = This door leads to the study.

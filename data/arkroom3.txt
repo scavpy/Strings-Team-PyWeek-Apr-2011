@@ -49,11 +49,28 @@ name = ArkR3to2
 model = door
 pos = 4,0,0,90
 text = This door leads to the sitting room.
-/
-[object]
-name = WindSumm1
-model = painting
-material = windsummon
-pos = -0.98,4,-0.4,90
+/2,4,0,90
 /
 
+[object]
+name = GrandfatherClock
+model = grandfather-clock
+pos = 0,4,0,90
+text = The clock is stopped at three minutes to eleven.
+/
+
+[object]
+name = Painting1
+model = painting
+material = firesummon
+pos = -0.98,4,-0.4,90
+text = A painting of some kind?
+/
+
+[object]
+name = Painting2
+model = painting
+material = bloodsummon
+pos = -0.98,4,-0.9,90
+text = A painting of some kind?
+/

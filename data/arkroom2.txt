@@ -57,19 +57,13 @@ model = fireplace
 pos = 0,4,0,0
 text = A place of fire!
 /
+
 [object]
-name = FireSumm
+name = WindSumm
 model = painting
-material = firesummon
-pos = -0.98,2,-0.4,90
-text = Labelled: 'The Summoning of Fire'. Aptly named given it's proximity to the fireplace. It has some kind of burning creature on it.
-/
-[object]
-name = BloodSumm
-model = painting
-material = bloodsummon
-pos = -0.98,1,-0.4,90
-text = Summoning of Blood
+material = windsummon
+pos = -0.98,6,-0.4,90
+text = 'The Summoning of Wind'. A slightly disturbing painting showing a huge vortex.
 /
 
 [object]
