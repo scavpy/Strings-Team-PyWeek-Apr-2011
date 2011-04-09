@@ -46,7 +46,9 @@ ChapterActions = {
 # Chapter Intro
     ("Chapter1", "begin"):(begin_speech,"BeginChapter1"),
     ("BeginChapter1",1):(change_room, "hotelroom1", "begin"),
-    ("BeginChapter1",2):[(chapter_setup, 2), (change_room, "Chapter2", "begin")],
+    ("BeginChapter1",2):(begin_speech, "Controls"),
+    ("BeginChapter1",3):[(chapter_setup, 2), (change_room, "Chapter2", "begin")],
+    ("Controls",1):(begin_speech,"BeginChapter1"),
 
 # Chapter 1 events
     ("HotelDeskLady", "click"):(do_ifelse,set(("cultist IDed",)),set(("cult key",)),
@@ -176,10 +178,15 @@ ChapterSpeech = {
         " references to one particular ancient cult with disturbing beliefs.\n"
         "Recently you received a letter from an old friend Martin DuPont, which leads you to believe the cult"
         " are active on the caribbean island of Martinique, so you go to see what they are up to.",
-        ["Begin","Ch2"]),
+        ["Begin","Help","Ch2 skip"]),
     "EndChapter1":(
         "A huge cloud of glowing smoke rushes down from Mont Pelee, burning and sweeping aside everything in its path.\n"
         "Before you die, you have time to wonder what the cultists would have been able to do with the artefact"
         " if you hadn't stopped them..."
         "Your mother and son are left alone in Arkham.", ["End of Chapter 1"]),
+    "Controls":("Turn, and move forward and backward with arrow keys.\n"
+                "Look up and down with Home and End\n"
+                "Click on things with mouse button 1 to interact with them.\n"
+                "Use digit keys to choose menu options. (couldn't get mouse working)",
+                ["OK"]),
 }

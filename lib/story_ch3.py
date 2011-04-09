@@ -46,6 +46,7 @@ ChapterActions = {
 # Chapter Intro
     ("Chapter3", "begin"):(begin_speech,"BeginChapter3"),
     ("BeginChapter3",1):(change_room,"arkham","begin"),
+    ("BeginChapter3",2):[(chapter_setup, 4), (chapter_end, (1,1,0,1), "Chapter4")],
 
 # Actions
     ("arkham","begin"):(do_ifelse,set(),set(("lawyer in",)),("arkham","AddLawyer"),("DO","NOTHING")),
@@ -106,7 +107,7 @@ ChapterSpeech = {
         " gibberish about some fantasy cult responsible for the sinking of the Titanic. Unable to believe him"
         " or persuade the doctors to release him, you decide you can at least finish what he started and visit"
         " the old Arkham house.\n"
-        "You decide to engage a lawyer and claim ownership of the ancient building.", ["Begin"]),
+        "You decide to engage a lawyer and claim ownership of the ancient building.", ["Begin","Ch4 skip"]),
     "Lawyer1":('"Well sir, here\'s the place. Shall we head inside and take a look?"',["After you."]),
     "Lawyer2":('"Here we are then. Let me know when you\'ve finished looking around."',["OK. I will."]),
     "Lawyer3":('"Oh... Er, hello."',["Hi. Did you find anything interesting?"]),

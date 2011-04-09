@@ -1,10 +1,10 @@
 """
-  Story elements for Chapter1
+  Story elements for Chapter4
 
 """
 from story_functions import *
 
-ACTIONS = {
+ChapterActions = {
 # Doors
 
 # Chapter Intro
@@ -13,5 +13,5 @@ ACTIONS = {
 
 }
 
-SPEECH = {
+ChapterSpeech = {
 }
