@@ -24,11 +24,11 @@ f0 f0 f0 f0 f0 f0
 /
 
 [layer]
-B3 b0 b0 B1 -- --
-b1 -- -- -- -- --
-b1 -- -- -- -- --
-B0 B2 -- -- -- --
--- b1 -- -- -- --
+-- -- B3 b0 -- --
+-- -- b1 -- -- --
+B3 b0 B1 -- -- --
+B0 b0 b0 b0 b0 b0
+-- -- -- -- -- --
 /
 
 [layer]
@@ -48,14 +48,14 @@ c0 D1 w1 w1 w1 c1
 /
 
 [object]
-name = ArkR2ato3a
+name = ArkR2to3a
 model = door
 pos = 2,8,0,-90
 text = This door leads to the study.
 /
 
 [object]
-name = ArkR2ato1a
+name = ArkR2to1a
 model = door
 pos = 10,6,0,180
 text = This door leads back to the hallway.
@@ -65,27 +65,13 @@ text = This door leads back to the hallway.
 name = FireplaceA
 model = fireplace
 pos = 0,4,0,0
-text = A place of fire!
-/
-[object]
-name = FireSummA
-model = painting
-material = firesummon
-pos = -0.98,2,-0.4,90
-text = Something's not right.
-/
-[object]
-name = BloodSummA
-model = painting
-material = bloodsummon
-pos = -0.98,1,-0.4,90
-text = The Summoning of Wind is missing. Whoever's in here must have taken it upstairs with them.
+text = FirePlace
 /
 
 [object]
-name = Staircase
+name = StaircaseA
 model = stairs-corner
 material = stairs-blood
 pos = 10,0,0,180
-text = They look worn and dangerous. You should probably stay downstairs for now.
+text = Staircase
 /

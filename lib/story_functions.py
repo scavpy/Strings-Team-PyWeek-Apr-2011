@@ -93,11 +93,6 @@ def add_prop(gamestate,p,onceonly):
 def cause_event(gamestate,event):
     EVENTS.add(event)
 
-def move_2ab(gamestate,room,gate):
-    c = "room2 first"
-    if c not in EVENTS:
-        EVENTS.add(("room2 first",))
-    change_room(gamestate,room,gate)
 
 import story_ch1, story_ch2, story_ch3, story_ch4, story_ch5
 import story_ch6, story_ch7, story_ch8, story_ch9
