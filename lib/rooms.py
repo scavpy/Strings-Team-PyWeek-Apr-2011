@@ -27,6 +27,9 @@ class PropPart(objpart.ObjPart):
         theta = atan2(y - wy, x - wx)
         self.turn_to_angle(degrees(theta), ms)
 
+    def move_to(self, pos, ms):
+        self.anim.change("pos", pos, ms)
+
 class ImagePanel(panel.Panel):
     _default_style = panel.Panel._default_style.copy()
     _default_style.update(dict(

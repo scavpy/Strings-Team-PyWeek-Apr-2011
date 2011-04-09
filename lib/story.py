@@ -42,6 +42,10 @@ def turn_actor(gamestate, name, angle, ms=1000):
     actor = gamestate[name]
     actor.turn_to_angle(angle, ms)
 
+def move_actor(gamestate, name, pos, ms=2000):
+    actor = gamestate[name]
+    actor.move_to(pos, ms)
+
 def face_player(gamestate, name, ms=500):
     actor = gamestate[name]
     actor.turn_to_face(gamestate.player, ms)
@@ -310,7 +314,9 @@ ACTIONS = {
     ("Lawyer","talk"):(begin_speech,"Lawyer1"),
     ("Lawyer1",1):[(cause_event,"lawyer talked"),
                    (turn_actor,"Lawyer",0),],
-    ("Lawyer","vanish"):(take_object,"Lawyer","lawyer in","Reg heads inside the house."),
+    ("Lawyer","vanish"):[(cause_event, "lawyer in"),
+                         (move_actor, "Lawyer", (14,20,0)),
+                         (foot_text,"Reg heads inside the house."),],
     ("arkroom1","begin"):(do_ifelse,set(),set(("door lock",)),("arkroom1","AddLawyer"),("DO","NOTHING")),
     ("arkroom1","AddLawyer"):(add_prop,("Lawyer2","man",(0,6,0),0,"Reg.D, lawyer","lawyer"),False),
     ("Lawyer2","click"):(begin_speech,"Lawyer2"),
